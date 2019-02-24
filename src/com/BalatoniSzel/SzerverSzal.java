@@ -2,6 +2,8 @@ package com.BalatoniSzel;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.lang.Thread;
 import java.net.Socket;
 import java.net.ServerSocket;
@@ -18,6 +20,7 @@ public class SzerverSzal extends Thread {
 
     public void run()  {
 try {
+
     ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
     Foglalas f = (Foglalas) in.readObject();
     System.out.println("Csomag jött:");
@@ -25,7 +28,8 @@ try {
    // System.out.println(apartman.pluszFoglalas(f));
     apartman.FoglalasMentes();
     System.out.println("És jól el is mentettem:"+ apartman.pluszFoglalas(f));
-
+    var out=new PrintWriter(socket.getOutputStream(),true);
+    out.println(apartman.pluszFoglalas(f));
 }
 catch (Exception ex) {
     ex.printStackTrace();
