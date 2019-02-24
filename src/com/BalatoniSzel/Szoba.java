@@ -1,10 +1,14 @@
 package com.BalatoniSzel;
 
-public class Szoba {
+import java.io.Serializable;
+
+public class Szoba implements Serializable {
  private String Azonosito;
  private int Agyszam;
  private boolean potagy;
  private boolean Elerheto;
+
+    private static final long serialVersionUID=12432154754443242L;
 
  public Szoba (String azonosito, int agyszam) {
      this.Azonosito=azonosito;

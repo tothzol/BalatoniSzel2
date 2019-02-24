@@ -8,7 +8,7 @@ public final class Adattarolas {
         try {
             FileOutputStream fileOut=new FileOutputStream(new File(fileName));
             ObjectOutputStream objectOut=new ObjectOutputStream(fileOut);
-            objectOut.writeObject(objectOut);
+            objectOut.writeObject(object);
             objectOut.close();
             fileOut.close();
             return object;

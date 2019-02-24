@@ -33,6 +33,7 @@ private synchronized void tesztSzobakeszites() {
     tesztSzobak.put(szoba3.getAzonosito(),szoba3);
     tesztSzobak.put(szoba4.getAzonosito(),szoba4);
     this.setSzobak(tesztSzobak);
+    SzobaMentes();
 System.out.println("Megvan");
 }
 
@@ -40,5 +41,11 @@ System.out.println("Megvan");
     public synchronized void setSzobak (Map<String,Szoba> szobak) {
     this.Szobak=szobak;
     }
+public  synchronized Map<String,Szoba> getSzobak(){
+        return this.Szobak;
+}
 
+    private synchronized void SzobaMentes() {
+        Adattarolas.Mentes(this.getSzobak(),"Szobak.ser");
+    }
 }
