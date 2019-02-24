@@ -14,6 +14,7 @@ public class Foglalas implements Serializable {
     private String SzobaAzonosito;
     private boolean Potagy;
     private int Ar;
+    private int Eloleg;
     private String FoglalasTipus; //felteteles, vegleges
 
 
@@ -56,13 +57,15 @@ public class Foglalas implements Serializable {
         return SzobaAzonosito;
     }
 
-    public void setErkezes(String erkezes) {
-        this.Erkezes=erkezes;
-    }
+    public int getEloleg() {return this.Eloleg;}
 
-    public void setTavozas(String tavozas) {
-       this.Tavozas = tavozas;
-    }
+    public int getAr(){return this.Ar;}
+
+    public void setErkezes(String erkezes) {this.Erkezes=erkezes;}
+
+    public void setTavozas(String tavozas) {this.Tavozas = tavozas;}
+
+    public void setEloleg (int eloleg) {this.Eloleg=eloleg;}
 
 
 }
