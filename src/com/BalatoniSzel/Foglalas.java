@@ -18,7 +18,7 @@ public class Foglalas implements Serializable {
     private String FoglalasTipus; //felteteles, vegleges
 
 
-    public Foglalas (String vendegemail, String erkezes, String tavozas, String szobaAzonosito, boolean potagy, int ar) {
+    public Foglalas (String vendegemail, String erkezes, String tavozas, String szobaAzonosito, boolean potagy, int ar, int eloleg) {
         this.VendegEmail=vendegemail;
         this.Erkezes=erkezes;
         this.Tavozas=tavozas;
@@ -28,6 +28,7 @@ public class Foglalas implements Serializable {
         this.FoglalasTipus="Felteteles";
         //TODO : A kétágyas szobánál a pótágy nem elérhető, kezelni kell.
         this.Potagy=potagy;
+        this.Eloleg=eloleg;
         this.Ar=ar;
         this.FoglalasAzonosito= UUID.randomUUID().toString(); //ez lehet, hogy erős ide
 
