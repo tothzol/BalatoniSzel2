@@ -11,12 +11,14 @@ public class Apartman implements Serializable {
 
     private Map<String,Szoba> Szobak;
     private Map<String, Vendeg> Vendegek;
-    private ConcurrentHashMap<Integer,Foglalas> Foglalasok;
+    private ConcurrentHashMap<String,Foglalas> Foglalasok;
 
 // tesztszobák letrehozása
 
     public Apartman(){
         SzobaBetoltes();
+        Foglalasok=new ConcurrentHashMap<>();
+        FoglalasBetoltes();
     }
 
 
@@ -24,9 +26,17 @@ public class Apartman implements Serializable {
     public synchronized void setSzobak (Map<String,Szoba> szobak) {
     this.Szobak=szobak;
     }
-public  synchronized Map<String,Szoba> getSzobak(){
+    public  synchronized Map<String,Szoba> getSzobak(){
         return this.Szobak;
-}
+    }
+
+    public synchronized void setFoglalasok(ConcurrentHashMap<String, Foglalas> foglalasok) {
+        this.Foglalasok=foglalasok;
+    }
+
+    public synchronized ConcurrentHashMap<String, Foglalas> getFoglalasok() {
+        return Foglalasok;
+    }
 
     private synchronized void SzobaMentes() {
         Adattarolas.Mentes(this.getSzobak(),"Szobak.ser");
@@ -37,6 +47,24 @@ public  synchronized Map<String,Szoba> getSzobak(){
         }
         else {
             tesztSzobakeszites();
+        }
+    }
+
+    public String pluszFoglalas (Foglalas foglalas) {
+        Foglalasok.put(foglalas.getFoglalasAzonosito(), foglalas);
+        return foglalas.getFoglalasAzonosito();
+    }
+
+    protected synchronized  void FoglalasMentes(){
+        Adattarolas.Mentes(this.getFoglalasok(),"Foglalasok.ser");
+    }
+
+    private synchronized void FoglalasBetoltes(){
+        if (new File("Foglalasok.ser").exists()){
+            this.Foglalasok=(ConcurrentHashMap<String,Foglalas>)Adattarolas.Betoltes("Foglalasok.ser");
+        }
+        else {
+            //tesztSzobakeszites();
         }
     }
 

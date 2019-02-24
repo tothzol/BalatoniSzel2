@@ -13,7 +13,7 @@ public static void main (String[] args) throws IOException{
     //var in=new Scanner(socket.getInputStream());
     ObjectOutputStream out=new ObjectOutputStream(socket.getOutputStream());
    //Hardcode, socket teszthez
-    out.writeObject(new Foglalas("zoltan@tothzol.hu","2019-03-01","2019-03-02","1",false,12000));
+    out.writeObject(new Foglalas("zoltan@tothzol.hu","2019-03-01","2019-03-02","201",false,12000,3500));
    // ObjectInputStream in=new ObjectInputStream(socket.getInputStream());
     socket.close();
     //System.out.println("Server mondja: "+in.());

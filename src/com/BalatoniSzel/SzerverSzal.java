@@ -21,7 +21,10 @@ try {
     ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
     Foglalas f = (Foglalas) in.readObject();
     System.out.println("Csomag jött:");
-    System.out.println(f.getFoglalasAzonosito() + " " + f.getVendegEmail());
+   // System.out.println(f.getFoglalasAzonosito() + " " + f.getVendegEmail());
+   // System.out.println(apartman.pluszFoglalas(f));
+    apartman.FoglalasMentes();
+    System.out.println("És jól el is mentettem:"+ apartman.pluszFoglalas(f));
 
 }
 catch (Exception ex) {
