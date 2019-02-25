@@ -13,12 +13,14 @@ public class Apartman implements Serializable {
     private Map<String, Vendeg> Vendegek;
     private ConcurrentHashMap<String,Foglalas> Foglalasok;
 
-// tesztszobák letrehozása
+
 
     public Apartman(){
         SzobaBetoltes();
         Foglalasok=new ConcurrentHashMap<>();
         FoglalasBetoltes();
+        Vendegek=new HashMap<>() ;
+        VendegBetoltes();
     }
 
 
@@ -26,6 +28,7 @@ public class Apartman implements Serializable {
     public synchronized void setSzobak (Map<String,Szoba> szobak) {
     this.Szobak=szobak;
     }
+
     public  synchronized Map<String,Szoba> getSzobak(){
         return this.Szobak;
     }
@@ -38,9 +41,15 @@ public class Apartman implements Serializable {
         return Foglalasok;
     }
 
+    public synchronized  Map<String,Vendeg> getVendegek(){return this.Vendegek;}
+
+    public synchronized void setVendegek(Map<String, Vendeg> vendegek) {this.Vendegek=vendegek;}
+
+
     private synchronized void SzobaMentes() {
         Adattarolas.Mentes(this.getSzobak(),"Szobak.ser");
     }
+
     private synchronized void SzobaBetoltes(){
         if (new File("Szobak.ser").exists()){
             this.Szobak=(Map<String,Szoba>)Adattarolas.Betoltes("Szobak.ser");
@@ -64,10 +73,28 @@ public class Apartman implements Serializable {
             this.Foglalasok=(ConcurrentHashMap<String,Foglalas>)Adattarolas.Betoltes("Foglalasok.ser");
         }
         else {
+            //Addig kellett, amíg file-ba ki nem irtam a szobákat
             //tesztSzobakeszites();
+
         }
     }
 
+    private synchronized void VendegBetoltes(){
+        if (new File("Vendegek.ser").exists()){
+            this.Vendegek=(Map<String,Vendeg>)Adattarolas.Betoltes("Vendegek.ser");
+        }
+        else {
+            //Addig kellett, amíg file-ba ki nem irtam a Vendegeket
+            tesztVendegKeszites();
+
+        }
+    }
+
+    protected synchronized void VendegMentes(){
+        Adattarolas.Mentes(this.getVendegek(),"Vendegek.ser");
+    }
+
+    // tesztszobák letrehozása
     private synchronized void tesztSzobakeszites() {
 
 
@@ -86,4 +113,15 @@ public class Apartman implements Serializable {
         System.out.println("Megvan");
     }
 
+    //tesztvendégek
+
+    private synchronized void tesztVendegKeszites(){
+        Vendeg vendeg1=new Vendeg("Tóth Zoltán","123456AA","1234 Simagöröngyös, Chuck Norris sugárút 1","zoltan@tothzol.hu");
+        Vendeg vendeg2=new Vendeg("Gipsz Jakab","789012BB","5831 Viharsarok, Sivatag u. 17","jakab@gipsz.hu");
+        Map<String,Vendeg> tesztVendegek=new HashMap<>();
+        tesztVendegek.put(vendeg1.getEmail(),vendeg1);
+        tesztVendegek.put(vendeg2.getEmail(),vendeg2);
+        this.Vendegek=tesztVendegek;
+        VendegMentes();
+    }
 }
