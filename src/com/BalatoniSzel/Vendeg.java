@@ -1,7 +1,6 @@
 package com.BalatoniSzel;
 
 
-
 public class Vendeg {
     private String Nev;
     private String Okmanyszam;
@@ -10,17 +9,17 @@ public class Vendeg {
 
 
     public Vendeg(String nev, String okmanyszam, String lakcim, String email) {
-        this.Nev=nev;
-        this.Okmanyszam=okmanyszam;
-        this.Lakcim=lakcim;
-        this.email=email;
+        this.Nev = nev;
+        this.Okmanyszam = okmanyszam;
+        this.Lakcim = lakcim;
+        this.email = email;
     }
 
-    public String getNev(){
+    public String getNev() {
         return this.Nev;
     }
 
-    public String getOkmanyszam(){
+    public String getOkmanyszam() {
         return this.Okmanyszam;
     }
 
@@ -47,5 +46,4 @@ public class Vendeg {
     public void setOkmanyszam(String okmanyszam) {
         Okmanyszam = okmanyszam;
     }
-
 }

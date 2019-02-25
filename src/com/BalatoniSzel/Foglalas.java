@@ -18,24 +18,24 @@ public class Foglalas implements Serializable {
     private String FoglalasTipus; //felteteles, vegleges
 
 
-    public Foglalas (String vendegemail, String erkezes, String tavozas, String szobaAzonosito, boolean potagy, int ar, int eloleg) {
-        this.VendegEmail=vendegemail;
-        this.Erkezes=erkezes;
-        this.Tavozas=tavozas;
+    public Foglalas(String vendegemail, String erkezes, String tavozas, String szobaAzonosito, boolean potagy, int ar, int eloleg) {
+        this.VendegEmail = vendegemail;
+        this.Erkezes = erkezes;
+        this.Tavozas = tavozas;
         //TODO : Több szobás foglalást kezelni kell majd
-        this.SzobaAzonosito=szobaAzonosito;
+        this.SzobaAzonosito = szobaAzonosito;
         //új foglalás mindig feltételes, tulaj majd változtat, ha a szállás rendezve van
-        this.FoglalasTipus="Felteteles";
+        this.FoglalasTipus = "Felteteles";
         //TODO : A kétágyas szobánál a pótágy nem elérhető, kezelni kell.
-        this.Potagy=potagy;
-        this.Eloleg=eloleg;
-        this.Ar=ar;
-        this.FoglalasAzonosito= UUID.randomUUID().toString(); //ez lehet, hogy erős ide
+        this.Potagy = potagy;
+        this.Eloleg = eloleg;
+        this.Ar = ar;
+        this.FoglalasAzonosito = UUID.randomUUID().toString(); //ez lehet, hogy erős ide
 
     }
 
-    public String getFoglalasAzonosito(){
-       return this.FoglalasAzonosito;
+    public String getFoglalasAzonosito() {
+        return this.FoglalasAzonosito;
     }
 
     public String getVendegEmail() {
@@ -58,15 +58,25 @@ public class Foglalas implements Serializable {
         return SzobaAzonosito;
     }
 
-    public int getEloleg() {return this.Eloleg;}
+    public int getEloleg() {
+        return this.Eloleg;
+    }
 
-    public int getAr(){return this.Ar;}
+    public int getAr() {
+        return this.Ar;
+    }
 
-    public void setErkezes(String erkezes) {this.Erkezes=erkezes;}
+    public void setErkezes(String erkezes) {
+        this.Erkezes = erkezes;
+    }
 
-    public void setTavozas(String tavozas) {this.Tavozas = tavozas;}
+    public void setTavozas(String tavozas) {
+        this.Tavozas = tavozas;
+    }
 
-    public void setEloleg (int eloleg) {this.Eloleg=eloleg;}
+    public void setEloleg(int eloleg) {
+        this.Eloleg = eloleg;
+    }
 
 
 }
