@@ -1,5 +1,6 @@
 package hu.unipannon.mik.balatoniszel.core;
 
+<<<<<<< HEAD
 import hu.unipannon.mik.balatoniszel.ws.Guest;
 
 import java.util.Objects;
@@ -70,4 +71,8 @@ public class GuestEntity {
         result.setEmail(email);
         return result;
     }
+=======
+public class GuestEntity {
+
+>>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
 }

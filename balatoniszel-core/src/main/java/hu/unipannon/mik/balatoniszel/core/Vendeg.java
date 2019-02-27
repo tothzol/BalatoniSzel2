@@ -1,4 +1,8 @@
+<<<<<<< HEAD:balatoniszel-core/src/main/java/hu/unipannon/mik/balatoniszel/core/Vendeg.java
 package hu.unipannon.mik.balatoniszel.core;
+=======
+package hu.unipannon.mik.balatoniszel.ws;
+>>>>>>> 29a372930036ad7f49d018af4466c77cface1e33:balatoniszel-core/src/main/java/hu/unipannon/mik/balatoniszel/core/Vendeg.java
 
 
 public class Vendeg {
