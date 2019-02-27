@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package hu.unipannon.mik.balatoniszel.ws;
 
 import org.slf4j.Logger;
@@ -17,18 +16,6 @@ import java.util.List;
 @RestController
 public class ClientController {
     private static final Logger LOG = LoggerFactory.getLogger(ClientController.class);
-=======
-package hu.unipannon.mik.balatoniszel;
-
-import ch.qos.logback.core.net.server.Client;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class ClientController {
->>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
 
     private final BalatoniSzel client;
 
@@ -37,7 +24,6 @@ public class ClientController {
         this.client = client;
     }
 
-<<<<<<< HEAD
     @GetMapping(path = "/")
     public ModelAndView index() {
         ModelAndView      indexView = new ModelAndView("index");
@@ -59,16 +45,6 @@ public class ClientController {
                                 @RequestParam(name = "email") String email) {
         client.reserve(startDate, endDate, numberOfBeds, name, document, address, email);
         return new ModelAndView("redirect:/");
-=======
-    @PostMapping
-    public String reserve() {
-        return null;
-    }
-
-    @GetMapping
-    public String showReservations() {
-        return null;
->>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
     }
 
 }

@@ -2,16 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<<<<<<< HEAD
     <modelVersion>4.0.0</modelVersion>
-=======
->>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
     <parent>
         <artifactId>balatoniszel-parent</artifactId>
         <groupId>hu.uni-pannon.mik.balatoniszel</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-<<<<<<< HEAD
     <artifactId>balatoniszel-api</artifactId>
     <dependencies>
         <dependency>
@@ -31,11 +27,4 @@
             <artifactId>jaxb-java-time-adapters</artifactId>
         </dependency>
     </dependencies>
-=======
-    <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>balatoniszel-api</artifactId>
-
-
->>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
 </project>

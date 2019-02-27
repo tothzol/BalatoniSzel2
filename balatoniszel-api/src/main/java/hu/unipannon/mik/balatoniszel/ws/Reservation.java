@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 package hu.unipannon.mik.balatoniszel.ws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import java.time.LocalDate;
 
 
 @XmlType(namespace = "hu.unipannon.mik.balatoniszel.ws")
@@ -63,17 +63,5 @@ public class Reservation {
     public void setRoom(Room room) {
         this.room = room;
     }
-=======
-package hu.unipannon.mik.balatoniszel;
 
-import java.time.LocalDate;
-import java.util.UUID;
-
-public interface Reservation {
-    String id();
-    LocalDate startDate();
-    LocalDate endDate();
-    int numberOfBeds();
-    Guest guest();
->>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
 }

@@ -1,15 +1,10 @@
-<<<<<<< HEAD
 package hu.unipannon.mik.balatoniszel.core;
 
 import hu.unipannon.mik.balatoniszel.ws.Guest;
-=======
-package hu.unipannon.mik.balatoniszel.ws;
->>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.UUID;
 
 public class GuestRepository {
@@ -44,15 +39,4 @@ public class GuestRepository {
         return guest;
     }
 
-=======
-
-public class GuestRepository {
-
-    List<Guest> guests = new ArrayList<>();
-
-    public List<Guest> guests() {
-        return Collections.unmodifiableList(guests);
-    }
-
->>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
 }

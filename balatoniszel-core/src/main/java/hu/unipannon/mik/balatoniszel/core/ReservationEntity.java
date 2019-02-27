@@ -1,6 +1,6 @@
 package hu.unipannon.mik.balatoniszel.core;
 
-<<<<<<< HEAD
+
 import hu.unipannon.mik.balatoniszel.ws.Reservation;
 
 import java.time.LocalDate;
@@ -62,9 +62,5 @@ public class ReservationEntity {
         result.setRoom(roomRepository.getRoom(roomId).asRoom());
         return result;
     }
-
-=======
-public class ReservationEntity {
->>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
 
 }

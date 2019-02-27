@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package hu.unipannon.mik.balatoniszel.ws;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -54,13 +53,4 @@ public class Guest {
         this.address = address;
     }
 
-=======
-package hu.unipannon.mik.balatoniszel;
-
-public interface Guest {
-    String name();
-    String document();
-    String email();
-    String address();
->>>>>>> 29a372930036ad7f49d018af4466c77cface1e33
 }
