@@ -1,4 +1,4 @@
-package com.BalatoniSzel;
+package hu.unipannon.mik.balatoniszel.core;
 
 import java.io.Serializable;
 
