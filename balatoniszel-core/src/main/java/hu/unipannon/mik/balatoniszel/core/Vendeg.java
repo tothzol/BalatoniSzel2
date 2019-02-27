@@ -1,4 +1,4 @@
-package com.BalatoniSzel;
+package hu.unipannon.mik.balatoniszel.ws;
 
 
 public class Vendeg {
