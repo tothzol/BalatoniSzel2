@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Balatoni Szél Panzió - Foglalás</title>
+    </head>
+    <body>
+        <h1>Új foglalás</h1>
+        <form action="/reserve" method="post" enctype="multipart/form-data">
+            <label for="startDate">Foglalás kezdete</label>
+            <input id="startDate" type="date" name="startDate" />
+            <br />
+            <label for="endDate">Foglalás vége</label>
+            <input id="endDate" type="date" name="endDate"/>
+            <br />
+            <label for="numberOfBeds">Személyek száma</label>
+            <input id="numberOfBeds" type="number" name="numberOfBeds" />
+            <br />
+            <label for="name">Név</label>
+            <input id="name" type="text" name="name">
+            <br />
+            <label for="address">Cím</label>
+            <input id="address" type="text" name="address" />
+            <br />
+            <label for="document">Személyazonosító okmány száma</label>
+            <input id="document" type="text" name="document" />
+            <br />
+            <label for="email">E-mail cím</label>
+            <input id="email" type="email" name="email" />
+            <br />
+            <button type="submit">Küld</button>
+        </form>
+        <h1>Foglalások</h1>
+
+        <div th:each="reservation : ${reservations}">
+            Dátum: <span th:text="${reservation.startDate}"></span> - <span th:text="${reservation.endDate}"></span><br />
+            Személyek száma: <span th:text="${reservation.numberOfBeds}"></span><br />
+            Név: <span th:text="${reservation.guest.name}"></span><br />
+            Cím: <span th:text="${reservation.guest.address}"></span><br />
+            Okmány: <span th:text="${reservation.guest.document}"></span><br />
+            E-mail: <span th:text="${reservation.guest.email}"></span><br />
+
+        </div>
+    </body>
+</html>
