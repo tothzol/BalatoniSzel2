@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
 @Configuration
-@EnableAutoConfiguration
 @ImportResource({"classpath:META-INF/cxf/cxf.xml" })
 public class ServerConfiguration {
 

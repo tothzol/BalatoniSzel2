@@ -1,6 +1,8 @@
 package hu.unipannon.mik.balatoniszel.ws;
 
 import hu.unipannon.mik.balatoniszel.core.Apartman;
+import hu.unipannon.mik.balatoniszel.core.ReservationEntity;
+import hu.unipannon.mik.balatoniszel.core.ReservationRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +26,7 @@ public class BalatoniSzelImpl implements BalatoniSzel {
                            String document,
                            String email) {
         return apartman.reserve(LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE),
-                                LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE),
+                                LocalDate.parse(endDate, DateTimeFormatter.ISO_DATE),
                                 numberOfBeds,
                                 name,
                                 address,
@@ -35,5 +37,32 @@ public class BalatoniSzelImpl implements BalatoniSzel {
     @Override
     public List<Reservation> reservations() {
         return apartman.reservations();
+    }
+
+    @Override
+    public void setDeposit(String reservationId, int deposit) {
+        ReservationEntity reservation = apartman.getReservation(reservationId);
+        if(reservation != null) {
+            reservation.setDeposit(deposit);
+            apartman.saveReservation(reservation);
+        }
+    }
+
+    @Override
+    public void setSpecialDays(String startDate, String endDate) {
+        apartman.setSpecialDays(
+                LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE),
+                LocalDate.parse(endDate, DateTimeFormatter.ISO_DATE)
+        );
+    }
+
+    @Override
+    public List<SpecialDays> getSpecialDays() {
+        return apartman.getSpecialDays();
+    }
+
+    @Override
+    public void deleteSpecialDays(String id) {
+        apartman.deleteSpecialDays(id);
     }
 }

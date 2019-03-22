@@ -1,6 +1,7 @@
 package hu.unipannon.mik.balatoniszel.core;
 
 import hu.unipannon.mik.balatoniszel.ws.Reservation;
+import hu.unipannon.mik.balatoniszel.ws.SpecialDays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,13 +19,16 @@ public class Apartman {
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
     private final GuestRepository guestRepository;
+    private final SpecialDaysRepository specialDaysRepository;
 
     public Apartman(ReservationRepository reservationRepository,
                     RoomRepository roomRepository,
-                    GuestRepository guestRepository) {
+                    GuestRepository guestRepository,
+                    SpecialDaysRepository specialDaysRepository) {
         this.reservationRepository = reservationRepository;
         this.roomRepository = roomRepository;
         this.guestRepository = guestRepository;
+        this.specialDaysRepository = specialDaysRepository;
     }
 
     public synchronized boolean reserve(LocalDate startDate,
@@ -75,9 +79,31 @@ public class Apartman {
     public List<Reservation> reservations() {
         return reservationRepository.reservations()
                 .stream()
-                .map(r -> r.asReservation(guestRepository, roomRepository))
+                .map(r -> r.asReservation(guestRepository, roomRepository, specialDaysRepository))
                 .collect(Collectors.toList());
     }
 
 
+    public ReservationEntity getReservation(String reservationId) {
+        return reservationRepository.getReservation(reservationId);
+    }
+
+    public void saveReservation(ReservationEntity reservation) {
+        reservationRepository.saveReservation(reservation);
+    }
+
+    public void setSpecialDays(LocalDate startDate, LocalDate endDate) {
+        specialDaysRepository.markDayAsSpecialDay(startDate, endDate);
+    }
+
+    public List<SpecialDays> getSpecialDays() {
+        return specialDaysRepository.getSpecialDays()
+                .stream()
+                .map(SpecialDaysEntity::asSpecialDays)
+                .collect(Collectors.toList());
+    }
+
+    public void deleteSpecialDays(String id) {
+        specialDaysRepository.deleteSpecialDays(id);
+    }
 }

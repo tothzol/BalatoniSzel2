@@ -15,6 +15,9 @@ public class Reservation {
     private int numberOfBeds;
     private Guest guest;
     private Room room;
+    private int deposit;
+    private boolean hasEnoughDeposit;
+    private int price;
 
     public String getId() {
         return id;
@@ -64,4 +67,27 @@ public class Reservation {
         this.room = room;
     }
 
+    public int getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(int deposit) {
+        this.deposit = deposit;
+    }
+
+    public boolean isHasEnoughDeposit() {
+        return hasEnoughDeposit;
+    }
+
+    public void setHasEnoughDeposit(boolean hasEnoughDeposit) {
+        this.hasEnoughDeposit = hasEnoughDeposit;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

@@ -5,6 +5,7 @@ import hu.unipannon.mik.balatoniszel.ws.Reservation;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class ReservationEntity {
     private final String    id;
@@ -13,6 +14,7 @@ public class ReservationEntity {
     private final int       numberOfBeds;
     private final String     guestId;
     private final String roomId;
+    private int deposit;
 
     public ReservationEntity(String id,
                              LocalDate startDate,
@@ -26,6 +28,7 @@ public class ReservationEntity {
         this.numberOfBeds = numberOfBeds;
         this.guestId = guestId;
         this.roomId = roomId;
+        this.deposit = 0;
     }
 
     public String getId() {
@@ -52,7 +55,9 @@ public class ReservationEntity {
         return roomId;
     }
 
-    public Reservation asReservation(GuestRepository guestRepository, RoomRepository roomRepository) {
+    public Reservation asReservation(GuestRepository guestRepository,
+                                     RoomRepository roomRepository,
+                                     SpecialDaysRepository specialDaysRepository) {
         Reservation result = new Reservation();
         result.setId(id);
         result.setStartDate(startDate.format(DateTimeFormatter.ISO_DATE));
@@ -60,7 +65,39 @@ public class ReservationEntity {
         result.setNumberOfBeds(numberOfBeds);
         result.setGuest(guestRepository.getGuest(guestId).asGuest());
         result.setRoom(roomRepository.getRoom(roomId).asRoom());
+        result.setDeposit(deposit);
+        result.setHasEnoughDeposit(hasEnoughDeposit(specialDaysRepository));
+        result.setPrice(calculatePrice(specialDaysRepository));
         return result;
     }
 
+    public int getPriceForDay(LocalDate day, SpecialDaysRepository specialDaysRepository) {
+        if(specialDaysRepository.isSpecialDay(day)) {
+            return 10000 * numberOfBeds;
+        } else {
+            return 5000 * numberOfBeds;
+        }
+    }
+
+    private int calculatePrice(SpecialDaysRepository specialDaysRepository) {
+        int price = 0;
+        LocalDate currentDate = startDate;
+        while(!currentDate.isAfter(endDate)) {
+            price += getPriceForDay(currentDate, specialDaysRepository);
+            currentDate = currentDate.plus(1, ChronoUnit.DAYS);
+        }
+        return price;
+    }
+
+    public int getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(int deposit) {
+        this.deposit = deposit;
+    }
+
+    public boolean hasEnoughDeposit(SpecialDaysRepository specialDaysRepository) {
+        return deposit > getPriceForDay(startDate, specialDaysRepository);
+    }
 }

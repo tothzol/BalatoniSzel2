@@ -12,4 +12,16 @@ public interface BalatoniSzel {
 
     @WebMethod
     List<Reservation> reservations();
+
+    @WebMethod
+    void setDeposit(String reservationId, int deposit);
+
+    @WebMethod
+    void setSpecialDays(String startDate, String endDate);
+
+    @WebMethod
+    List<SpecialDays> getSpecialDays();
+
+    @WebMethod
+    void deleteSpecialDays(String id);
 }

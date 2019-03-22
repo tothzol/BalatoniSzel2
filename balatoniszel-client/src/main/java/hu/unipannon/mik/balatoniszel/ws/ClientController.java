@@ -28,9 +28,6 @@ public class ClientController {
     public ModelAndView index() {
         ModelAndView      indexView = new ModelAndView("index");
         List<Reservation> reservationList = client.reservations();
-        if(reservationList != null) {
-            LOG.info("Reservations: {}", reservationList.size());
-        }
         indexView.addObject("reservations", reservationList);
         return indexView;
     }
@@ -44,6 +41,13 @@ public class ClientController {
                                 @RequestParam(name = "document") String document,
                                 @RequestParam(name = "email") String email) {
         client.reserve(startDate, endDate, numberOfBeds, name, document, address, email);
+        return new ModelAndView("redirect:/");
+    }
+
+    @PostMapping(path="/setDeposit")
+    public ModelAndView setDeposit(@RequestParam(name = "reservationId") String reservationId,
+                                   @RequestParam(name = "deposit") int deposit) {
+        client.setDeposit(reservationId, deposit);
         return new ModelAndView("redirect:/");
     }
 
