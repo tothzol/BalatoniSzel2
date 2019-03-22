@@ -28,9 +28,6 @@ public class ClientController {
     public ModelAndView index() {
         ModelAndView      indexView = new ModelAndView("index");
         List<Reservation> reservationList = client.reservations();
-        if(reservationList != null) {
-            LOG.info("Reservations: {}", reservationList.size());
-        }
         indexView.addObject("reservations", reservationList);
         return indexView;
     }
