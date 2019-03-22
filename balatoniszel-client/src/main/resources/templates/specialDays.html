@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Balatoni Szél Panzió - Kiemelt napok</title>
+</head>
+<body>
+<a href="/">Foglalások szerkesztése</a>
+<h1>Új kiemelt nap</h1>
+<form action="/addSpecialDay" method="post" enctype="multipart/form-data">
+    <label for="startDate">Foglalás kezdete</label>
+    <input id="startDate" type="date" name="startDate" />
+    <br />
+    <label for="endDate">Foglalás vége</label>
+    <input id="endDate" type="date" name="endDate"/>
+    <br />
+    <button type="submit">Küld</button>
+</form>
+<h1>Kiemelt napok</h1>
+
+<div th:each="specialDay : ${specialDays}">
+    Dátum: <span th:text="${specialDay.startDate}"></span> - <span th:text="${specialDay.endDate}"></span><br />
+    <form action="/deleteSpecialDay" method="post">
+        <input type="hidden" name="specialDayId" th:value="${specialDay.id}" />
+        <button type="submit">Töröl</button>
+    </form>
+</div>
+</body>
+</html>

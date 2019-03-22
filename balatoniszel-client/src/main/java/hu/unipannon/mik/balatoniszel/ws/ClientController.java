@@ -44,4 +44,11 @@ public class ClientController {
         return new ModelAndView("redirect:/");
     }
 
+    @PostMapping(path="/setDeposit")
+    public ModelAndView setDeposit(@RequestParam(name = "reservationId") String reservationId,
+                                   @RequestParam(name = "deposit") int deposit) {
+        client.setDeposit(reservationId, deposit);
+        return new ModelAndView("redirect:/");
+    }
+
 }

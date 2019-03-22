@@ -4,6 +4,8 @@
         <title>Balatoni Szél Panzió - Foglalás</title>
     </head>
     <body>
+
+        <a href="/specialDays" >Kiemelt napok szerkesztése</a>
         <h1>Új foglalás</h1>
         <form action="/reserve" method="post" enctype="multipart/form-data">
             <label for="startDate">Foglalás kezdete</label>
@@ -29,6 +31,7 @@
             <br />
             <button type="submit">Küld</button>
         </form>
+        
         <h1>Foglalások</h1>
 
         <div th:each="reservation : ${reservations}">
@@ -38,7 +41,12 @@
             Cím: <span th:text="${reservation.guest.address}"></span><br />
             Okmány: <span th:text="${reservation.guest.document}"></span><br />
             E-mail: <span th:text="${reservation.guest.email}"></span><br />
-
+            Ár: <span th:text="${reservation.price}"></span><br />
+            <form action="/setDeposit" method="post">
+                <input type="hidden" name="reservationId" th:value="${reservation.id}" />
+                Előleg: <input type="number" name="deposit" th:value="${reservation.deposit}" /><br />
+                <button type="submit">Rögzít</button>
+            </form>
         </div>
     </body>
 </html>
