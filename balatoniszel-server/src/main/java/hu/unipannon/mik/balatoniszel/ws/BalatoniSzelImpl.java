@@ -41,11 +41,8 @@ public class BalatoniSzelImpl implements BalatoniSzel {
 
     @Override
     public void setDeposit(String reservationId, int deposit) {
-        ReservationEntity reservation = apartman.getReservation(reservationId);
-        if(reservation != null) {
-            reservation.setDeposit(deposit);
-            apartman.saveReservation(reservation);
-        }
+        
+        apartman.setDeposit(reservationId, deposit);
     }
 
     @Override
