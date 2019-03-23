@@ -106,4 +106,14 @@ public class Apartman {
     public void deleteSpecialDays(String id) {
         specialDaysRepository.deleteSpecialDays(id);
     }
+
+    public void setDeposit(String reservationId, int deposit) {
+        ReservationEntity reservation =  reservationRepository.getReservation(reservationId);
+        if(reservation != null) {
+            reservation.setDeposit(deposit);
+            reservationRepository.saveReservation(reservation);
+        }
+    }
+
+    
 }
