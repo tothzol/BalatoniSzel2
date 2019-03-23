@@ -42,7 +42,7 @@
             Okmány: <span th:text="${reservation.guest.document}"></span><br />
             E-mail: <span th:text="${reservation.guest.email}"></span><br />
             Ár: <span th:text="${reservation.price}"></span><br />
-            <form action="/setDeposit" method="post">
+            Foglalás időpontja: <span th:text="${reservation.reservationDate}"></span><br />
                 <input type="hidden" name="reservationId" th:value="${reservation.id}" />
                 Előleg: <input type="number" name="deposit" th:value="${reservation.deposit}" /><br />
                 <button type="submit">Rögzít</button>

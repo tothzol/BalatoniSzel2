@@ -18,6 +18,15 @@ public class Reservation {
     private int deposit;
     private boolean hasEnoughDeposit;
     private int price;
+    private String reservationDate;
+
+    public String getReservationDate() {
+        return reservationDate;
+    }
+
+    public void setReservationDate(String reservationDate) {
+        this.reservationDate = reservationDate;
+    }
 
     public String getId() {
         return id;

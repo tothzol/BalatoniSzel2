@@ -4,10 +4,14 @@ package hu.unipannon.mik.balatoniszel.core;
 import hu.unipannon.mik.balatoniszel.ws.Reservation;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ReservationEntity {
+    
     private final String    id;
     private final LocalDate startDate;
     private final LocalDate endDate;
@@ -15,13 +19,15 @@ public class ReservationEntity {
     private final String     guestId;
     private final String roomId;
     private int deposit;
+    private final LocalDateTime reservationDate;
 
     public ReservationEntity(String id,
                              LocalDate startDate,
                              LocalDate endDate,
                              int numberOfBeds,
                              String guestId,
-                             String roomId) {
+                             String roomId,
+                             LocalDateTime reservationDate) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -29,6 +35,11 @@ public class ReservationEntity {
         this.guestId = guestId;
         this.roomId = roomId;
         this.deposit = 0;
+        this.reservationDate = reservationDate;
+    }
+
+    public LocalDateTime getReservationDate() {
+        return reservationDate;
     }
 
     public String getId() {
@@ -68,6 +79,8 @@ public class ReservationEntity {
         result.setDeposit(deposit);
         result.setHasEnoughDeposit(hasEnoughDeposit(specialDaysRepository));
         result.setPrice(calculatePrice(specialDaysRepository));
+        String formattedReservationDate = reservationDate.format(DateTimeFormatter.ISO_DATE_TIME);
+        result.setReservationDate(formattedReservationDate);
         return result;
     }
 
