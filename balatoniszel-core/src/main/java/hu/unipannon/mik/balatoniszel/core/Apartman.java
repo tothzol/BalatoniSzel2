@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,8 @@ public class Apartman {
                                                                     endDate,
                                                                     numberOfBeds,
                                                                     guest.getId(),
-                                                                    reservedRoom.getId());
+                                                                    reservedRoom.getId(),
+                                                                    LocalDateTime.now());
         reservationRepository.addReservation(reservationEntity);
         LOG.info("Reservation saved.");
         return true;
