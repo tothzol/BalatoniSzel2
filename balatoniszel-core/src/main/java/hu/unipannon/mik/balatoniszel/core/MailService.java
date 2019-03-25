@@ -15,9 +15,8 @@ public class MailService {
 
     @Autowired
     private JavaMailSender mailSender;
-    // private TemplateEngine templateEngine; // Hogy lehet elérni a Template enginet?
 
-    private void sendMail(String from, String to, String subject, String templateName, Map<String, String> parameters) {
+    public void sendMail(String from, String to, String subject, String templateName, Map<String, String> parameters) {
 
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
