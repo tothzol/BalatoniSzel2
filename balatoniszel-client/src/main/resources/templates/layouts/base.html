@@ -18,10 +18,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/'} ? 'active' : ''">
                     <a class="nav-link" href="/">Főoldal</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/specialDays'} ? 'active' : ''">
                     <a class="nav-link" href="/specialDays">Kiemelt napok szerkesztése</a>
                 </li>
             </ul>
