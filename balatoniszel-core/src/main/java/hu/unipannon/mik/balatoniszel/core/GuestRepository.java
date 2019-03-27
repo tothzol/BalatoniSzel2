@@ -22,6 +22,14 @@ public class GuestRepository {
                      .findFirst()
                      .orElse(null);
     }
+    public GuestEntity getGuest(String email, String password) {
+        return guests.stream()
+                .filter(guest -> guest.getEmail().equalsIgnoreCase(email) &&
+                        guest.getPassword().equals(password))
+                .findFirst()
+                .orElse(null);
+    }
+
 
     public GuestEntity findGuest(String name, String address, String document, String email) {
         return guests.stream()
@@ -30,11 +38,14 @@ public class GuestRepository {
                              g.getDocument().equalsIgnoreCase(document) &&
                              g.getEmail().equalsIgnoreCase(email))
                 .findFirst()
-                .orElse(create(name, address, document, email));
+                .orElse(create(name, address, document, email, false));
     }
 
-    private GuestEntity create(String name, String address, String document, String email) {
-        GuestEntity guest = new GuestEntity(UUID.randomUUID().toString(), name, address, document, email);
+
+
+    private GuestEntity create(String name, String address, String document, String email, Boolean regular) {
+        //TODO: password generálás
+        GuestEntity guest = new GuestEntity(UUID.randomUUID().toString(), name, address, document, email,regular,"pass");
         guests.add(guest);
         return guest;
     }

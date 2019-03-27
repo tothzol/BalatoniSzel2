@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -40,10 +41,12 @@ public class Apartman {
                                         String document,
                                         String email) {
         List<RoomEntity> freeRooms = getFreeRooms(startDate, endDate, numberOfBeds);
+
         if(freeRooms.size() == 0) {
             LOG.info("No free rooms");
             return false;
         }
+        freeRooms.sort(Comparator.comparing(RoomEntity::getNumberOfBeds));  //rendezi ágyszám szerint
         RoomEntity reservedRoom = freeRooms.get(0);
         GuestEntity guest = guestRepository.findGuest(name, address, document, email);
         ReservationEntity reservationEntity = new ReservationEntity(UUID.randomUUID().toString(),

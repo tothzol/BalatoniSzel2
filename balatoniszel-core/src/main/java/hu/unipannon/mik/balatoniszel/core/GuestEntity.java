@@ -10,14 +10,18 @@ public class GuestEntity {
     private final String address;
     private final String document;
     private final String email;
+    private final Boolean regular;
+    private final String password;
 
 
-    public GuestEntity(String id, String name, String address, String document, String email) {
+    public GuestEntity(String id, String name, String address, String document, String email, Boolean regular, String password) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.document = document;
         this.email = email;
+        this.regular=regular;
+        this.password=password;
     }
 
     public String getId() {
@@ -40,6 +44,11 @@ public class GuestEntity {
         return email;
     }
 
+    public boolean isRegular() { return regular; }
+
+    public String getPassword() { return password; }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -53,12 +62,14 @@ public class GuestEntity {
                getName().equals(that.getName()) &&
                getAddress().equals(that.getAddress()) &&
                getDocument().equals(that.getDocument()) &&
-               getEmail().equals(that.getEmail());
+               getEmail().equals(that.getEmail()) &&
+                getPassword().equals(that.getPassword()) &&
+                isRegular()==that.isRegular();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getAddress(), getDocument(), getEmail());
+        return Objects.hash(getId(), getName(), getAddress(), getDocument(), getEmail(), isRegular());
     }
 
     public Guest asGuest() {
@@ -68,6 +79,8 @@ public class GuestEntity {
         result.setAddress(address);
         result.setDocument(document);
         result.setEmail(email);
+        result.setRegular(regular);
+        result.setPassword(password);
         return result;
     }
 
