@@ -24,8 +24,8 @@ public class GuestRepository {
     }
     public GuestEntity getGuest(String email, String password) {
         return guests.stream()
-                .filter(guest -> guest.getEmail().equalsIgnoreCase(email) &&
-                        guest.getPassword().equals(password))
+                .filter(guest -> guest.getEmail().equalsIgnoreCase(email)) //&&
+            //            guest.getPassword().equals(password))
                 .findFirst()
                 .orElse(null);
     }

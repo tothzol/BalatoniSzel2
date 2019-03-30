@@ -61,12 +61,14 @@ public class Apartman {
         return true;
     }
 
-    public synchronized List<RoomEntity> getFreeRooms(LocalDate startDate, LocalDate endDate, int numberOfBeds) {
+    synchronized List<RoomEntity> getFreeRooms(LocalDate startDate, LocalDate endDate, int numberOfBeds) {
         List<RoomEntity> freeRooms = new ArrayList<>(roomRepository.rooms());
         LocalDate currentDate = startDate;
         while(!currentDate.isAfter(endDate)) {
             List<RoomEntity> reservedRooms = reservedRooms(currentDate);
             freeRooms.removeAll(reservedRooms);
+            freeRooms.removeAll(roomRepository.tooSmall(numberOfBeds)); //itt veszi le a kisebb ágyszámú szobákat
+
             currentDate = currentDate.plus(1, ChronoUnit.DAYS);
         }
         return freeRooms;
@@ -80,6 +82,8 @@ public class Apartman {
                 .map(roomRepository::getRoom)
                 .collect(Collectors.toList());
     }
+
+
 
     public List<Reservation> reservations() {
         return reservationRepository.reservations()

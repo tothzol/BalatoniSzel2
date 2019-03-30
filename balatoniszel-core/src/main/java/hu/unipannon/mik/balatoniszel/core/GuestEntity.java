@@ -46,7 +46,10 @@ public class GuestEntity {
 
     public boolean isRegular() { return regular; }
 
-    public String getPassword() { return password; }
+    public boolean isValidPassword (String password) {
+//TODO: Implementation needed
+        return false;
+    }
 
 
     @Override
@@ -63,7 +66,7 @@ public class GuestEntity {
                getAddress().equals(that.getAddress()) &&
                getDocument().equals(that.getDocument()) &&
                getEmail().equals(that.getEmail()) &&
-                getPassword().equals(that.getPassword()) &&
+                //getPassword().equals(that.getPassword()) &&
                 isRegular()==that.isRegular();
     }
 
@@ -80,7 +83,6 @@ public class GuestEntity {
         result.setDocument(document);
         result.setEmail(email);
         result.setRegular(regular);
-        result.setPassword(password);
         return result;
     }
 
