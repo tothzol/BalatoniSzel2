@@ -1,5 +1,6 @@
 package hu.unipannon.mik.balatoniszel.core;
 
+import hu.unipannon.mik.balatoniszel.ws.Guest;
 import hu.unipannon.mik.balatoniszel.ws.Reservation;
 import hu.unipannon.mik.balatoniszel.ws.SpecialDays;
 import org.slf4j.Logger;
@@ -93,6 +94,7 @@ public class Apartman {
     }
 
 
+
     public ReservationEntity getReservation(String reservationId) {
         return reservationRepository.getReservation(reservationId);
     }
@@ -123,6 +125,16 @@ public class Apartman {
             reservationRepository.saveReservation(reservation);
         }
     }
+    public List<Guest> guests(){
+        return guestRepository.guests()
+                .stream()
+                .map(g->g.asGuest())
+                .collect(Collectors.toList());
+    }
 
+    public void newGuest(String name,String email, String address, String document, String password) {
+     guestRepository.addNewGuest(name,address,document,email,false,password);
+
+    }
     
 }

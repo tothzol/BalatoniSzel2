@@ -48,5 +48,15 @@
                 <button type="submit">Rögzít</button>
             </form>
         </div>
+
+        <h1>Vendégek</h1>
+        <div th:each="guest : ${guests}">
+            Név: <span th:text="${guest.name}"></span> <br />
+            Cím: <span th:text="${guest.address}"></span> <br />
+            email: <span th:text="${guest.email}"></span> <br />
+
+
+        </div>
+
     </body>
 </html>

@@ -50,4 +50,9 @@ public class GuestRepository {
         return guest;
     }
 
+    public void addNewGuest(String name, String address, String document, String email, Boolean regular, String password) {
+        //TODO: password generálás
+        GuestEntity guest = new GuestEntity(UUID.randomUUID().toString(), name, address, document, email,regular,password);
+        guests.add(guest);
+    }
 }

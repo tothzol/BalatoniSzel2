@@ -62,4 +62,13 @@ public class BalatoniSzelImpl implements BalatoniSzel {
     public void deleteSpecialDays(String id) {
         apartman.deleteSpecialDays(id);
     }
+
+    @Override
+    public  void newGuest(String name, String email,String address, String document, String password) {
+        apartman.newGuest(name,email,address,document,password);
+    }
+    @Override
+    public List<Guest> guests(){
+       return apartman.guests();
+    }
 }

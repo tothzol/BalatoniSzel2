@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Balatoni Szél Panzió - Vendég</title>
+
+</head>
+<body>
+<h1>Új vendég</h1>
+<form action="/newGuest" method="post" enctype="multipart/form-data">
+    <label for="guestName">Név</label>
+    <input id="guestName" type="text" name="guestName" />
+    <br />
+    <label for="guestEmail">Email</label>
+    <input id="guestEmail" type="text" name="guestEmail"/>
+    <br />
+    <label for="guestAddress">Lakcím</label>
+    <input id="guestAddress" type="text" name="guestAddress" />
+    <br />
+    <label for="guestDocument">Személyazonosító okmány száma</label>
+    <input id="guestDocument" type="text" name="guestDocument">
+    <br />
+    <label for="guestPassword">Jelszó</label>
+    <input id="guestPassword" type="text" name="guestPassword" />
+    <br />
+    <label for="guestPasswordOneMore">Jelszó újra</label>
+    <input id="guestPasswordOneMore" type="text" name="guestPasswordOneMore" />
+    <br />
+
+    <button type="submit">Küld</button>
+</form>
+
+</body>
+</html>

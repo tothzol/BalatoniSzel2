@@ -29,6 +29,8 @@ public class ClientController {
         ModelAndView      indexView = new ModelAndView("index");
         List<Reservation> reservationList = client.reservations();
         indexView.addObject("reservations", reservationList);
+        List<Guest> guestList=client.guests();
+        indexView.addObject("guests", guestList);
         return indexView;
     }
 

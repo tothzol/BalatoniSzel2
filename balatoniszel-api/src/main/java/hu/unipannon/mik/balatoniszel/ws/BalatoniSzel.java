@@ -24,4 +24,10 @@ public interface BalatoniSzel {
 
     @WebMethod
     void deleteSpecialDays(String id);
+
+    @WebMethod
+    void newGuest(String name,String email, String address, String document, String password);
+
+    @WebMethod
+    List<Guest> guests();
 }
