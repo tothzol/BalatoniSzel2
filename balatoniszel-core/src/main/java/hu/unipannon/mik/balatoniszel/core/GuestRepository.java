@@ -57,7 +57,7 @@ public class GuestRepository {
     }
 
     public void saveGuest(GuestEntity guest) {
-        GuestEntity g=getGuest(guest.getAddress());
+        GuestEntity g=getGuest(guest.getId());
         g.setRegular(guest.isRegular());
     }
 }
