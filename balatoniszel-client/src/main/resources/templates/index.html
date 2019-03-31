@@ -35,6 +35,7 @@
         <h1>Foglalások</h1>
 
         <div th:each="reservation : ${reservations}">
+            <form action="/setDeposit" method="post" enctype="multipart/form-data">
             Dátum: <span th:text="${reservation.startDate}"></span> - <span th:text="${reservation.endDate}"></span><br />
             Személyek száma: <span th:text="${reservation.numberOfBeds}"></span><br />
             Név: <span th:text="${reservation.guest.name}"></span><br />
@@ -51,11 +52,15 @@
 
         <h1>Vendégek</h1>
         <div th:each="guest : ${guests}">
+            <form action="/setRegular" method="post" enctype="multipart/form-data">
             Név: <span th:text="${guest.name}"></span> <br />
             Cím: <span th:text="${guest.address}"></span> <br />
             email: <span th:text="${guest.email}"></span> <br />
-
-
+                <input type="hidden" name="guestID" th:value="${guest.id}" />
+            <input type="radio" value="true" name="regular" th:checked="${guest.isRegular()}"> igen <br />
+                <input type="radio" value="false" name="regular" th:checked="${!guest.isRegular()}"> nem <br />
+                <button type="submit">Rögzít</button>
+            </form>
         </div>
 
     </body>

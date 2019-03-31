@@ -55,4 +55,9 @@ public class GuestRepository {
         GuestEntity guest = new GuestEntity(UUID.randomUUID().toString(), name, address, document, email,regular,password);
         guests.add(guest);
     }
+
+    public void saveGuest(GuestEntity guest) {
+        GuestEntity g=getGuest(guest.getAddress());
+        g.setRegular(guest.isRegular());
+    }
 }

@@ -19,7 +19,7 @@ public class guestTest {
         Apartman a=new Apartman(reservationRepository,roomRepository,guestRepository,specialDaysRepository);
 
         //When
-        a.newGuest("Zoli","zoli@zoli.hu)","1111 Sé Bő u. 1","123456ab","123456");
+        a.newGuest("Zoli","zoli@zoli.hu)","1111 Sé Bő u. 1","123456ab","123456", "123456");
         //Then
         List<Guest> guests=a.guests();
 

@@ -132,9 +132,21 @@ public class Apartman {
                 .collect(Collectors.toList());
     }
 
-    public void newGuest(String name,String email, String address, String document, String password) {
-     guestRepository.addNewGuest(name,address,document,email,false,password);
+    public void newGuest(String name,String email, String address, String document, String password, String passwordOneMore) {
+     if (password.equals(passwordOneMore)) {
+
+         guestRepository.addNewGuest(name, address, document, email, false, password);
+     }
 
     }
-    
+
+    public GuestEntity getGuest(String guestID) {
+        return guestRepository.getGuest(guestID);
+    }
+
+    public void setRegular(String guestID, boolean regular) {
+        GuestEntity g = getGuest(guestID);
+        g.setRegular(regular);
+        guestRepository.saveGuest(g);
+    }
 }

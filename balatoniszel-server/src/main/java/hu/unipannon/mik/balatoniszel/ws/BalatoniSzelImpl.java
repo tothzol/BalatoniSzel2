@@ -1,6 +1,7 @@
 package hu.unipannon.mik.balatoniszel.ws;
 
 import hu.unipannon.mik.balatoniszel.core.Apartman;
+import hu.unipannon.mik.balatoniszel.core.GuestEntity;
 import hu.unipannon.mik.balatoniszel.core.ReservationEntity;
 import hu.unipannon.mik.balatoniszel.core.ReservationRepository;
 
@@ -64,11 +65,18 @@ public class BalatoniSzelImpl implements BalatoniSzel {
     }
 
     @Override
-    public  void newGuest(String name, String email,String address, String document, String password) {
-        apartman.newGuest(name,email,address,document,password);
+    public  void newGuest(String name, String email,String address, String document, String password, String passwordOneMore) {
+
+        apartman.newGuest(name,email,address,document,password, passwordOneMore);
     }
     @Override
     public List<Guest> guests(){
        return apartman.guests();
+    }
+
+    @Override
+    public void setRegular(String guestID, boolean regular) {
+        apartman.setRegular( guestID,  regular);
+
     }
 }

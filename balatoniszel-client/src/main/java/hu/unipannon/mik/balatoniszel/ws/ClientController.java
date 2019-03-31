@@ -52,5 +52,11 @@ public class ClientController {
         client.setDeposit(reservationId, deposit);
         return new ModelAndView("redirect:/");
     }
+    @PostMapping(path="/setRegular")
+    public ModelAndView setRegular(@RequestParam(name = "guestID") String guestID,
+                                   @RequestParam(name = "regular") boolean regular) {
+        client.setRegular(guestID, regular);
+        return new ModelAndView("redirect:/");
+    }
 
 }

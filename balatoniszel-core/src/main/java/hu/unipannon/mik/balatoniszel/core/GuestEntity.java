@@ -10,7 +10,7 @@ public class GuestEntity {
     private final String address;
     private final String document;
     private final String email;
-    private final Boolean regular;
+    private Boolean regular;
     private final String password;
 
 
@@ -45,6 +45,8 @@ public class GuestEntity {
     }
 
     public boolean isRegular() { return regular; }
+
+    public void setRegular (boolean regular) {this.regular=regular;}
 
     public boolean isValidPassword (String password) {
 //TODO: Implementation needed

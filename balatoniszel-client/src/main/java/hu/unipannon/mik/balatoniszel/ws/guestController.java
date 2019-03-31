@@ -28,8 +28,9 @@ public class guestController {
                                     @RequestParam(name = "guestEmail") String email,
                                     @RequestParam(name = "guestAddress") String address,
                                     @RequestParam(name = "guestDocument") String document,
-                                    @RequestParam(name = "guestPassword") String password) {
-            client.newGuest(name,email,address,document, password);
+                                    @RequestParam(name = "guestPassword") String password,
+                                    @RequestParam(name = "guestPasswordOneMore") String passwordOneMore){
+            client.newGuest(name,email,address,document, password,passwordOneMore);
         return new ModelAndView("redirect:/guest");
     }
 }
