@@ -2,6 +2,7 @@ package hu.unipannon.mik.balatoniszel.core;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RoomRepository {
 
@@ -21,4 +22,9 @@ public class RoomRepository {
                 .orElse(null);
     }
 
+    public List<RoomEntity> tooSmall(int bedNumber) {
+        return  rooms.stream()
+                .filter(room-> room.getNumberOfBeds()<bedNumber)
+                .collect(Collectors.toList());
+    }
 }

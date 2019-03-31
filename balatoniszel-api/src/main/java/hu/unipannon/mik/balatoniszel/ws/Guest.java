@@ -12,6 +12,8 @@ public class Guest {
     private String document;
     private String email;
     private String address;
+    private Boolean regular;
+    private String password;
 
     public String getId() {
         return id;
@@ -25,9 +27,7 @@ public class Guest {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     public String getDocument() {
         return document;
@@ -52,5 +52,13 @@ public class Guest {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public boolean isRegular() {return regular;}
+
+    public void setRegular(boolean regular) {this.regular=regular;}
+
+    public String getPassword() { return password; }
+
+    public void setPassword( String password) {this.password=password;}
 
 }

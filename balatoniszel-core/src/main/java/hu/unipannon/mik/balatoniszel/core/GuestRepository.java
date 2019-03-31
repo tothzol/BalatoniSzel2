@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GuestRepository {
 
@@ -22,6 +24,14 @@ public class GuestRepository {
                      .findFirst()
                      .orElse(null);
     }
+    public GuestEntity getGuest(String email, String password) {
+        return guests.stream()
+                .filter(guest -> guest.getEmail().equalsIgnoreCase(email)) //&&
+            //            guest.getPassword().equals(password))
+                .findFirst()
+                .orElse(null);
+    }
+
 
     public GuestEntity findGuest(String name, String address, String document, String email) {
         return guests.stream()
@@ -30,13 +40,16 @@ public class GuestRepository {
                              g.getDocument().equalsIgnoreCase(document) &&
                              g.getEmail().equalsIgnoreCase(email))
                 .findFirst()
-                .orElse(create(name, address, document, email));
+                .orElse(null);
     }
 
-    private GuestEntity create(String name, String address, String document, String email) {
-        GuestEntity guest = new GuestEntity(UUID.randomUUID().toString(), name, address, document, email);
+
+
+     public void create(String name, String address, String document, String email, Boolean regular, String password) {
+        //TODO: password generálás
+        GuestEntity guest = new GuestEntity(UUID.randomUUID().toString(), name, address, document, email,regular, password);
         guests.add(guest);
-        return guest;
     }
+
 
 }

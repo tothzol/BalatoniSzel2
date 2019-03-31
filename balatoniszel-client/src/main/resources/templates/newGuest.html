@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Balatoni Szél Panzió - Vendég regisztráció</title>
+</head>
+<body>
+<h1>Új Vendég</h1>
+<form action="/addNewGuest" method="post" enctype="multipart/form-data">
+    <label for="guestName">Név</label>
+    <input id="guestName" type="text" name="guestName" />
+    <br />
+    <label for="guestAddress">Lakcím</label>
+    <input id="guestAddress" type="text" name="guestAddress" />
+    <br />
+    <label for="guestDocument">Okmányszám</label>
+    <input id="guestDocument" type="text" name="guestDocument" />
+    <br />
+    <label for="guestEmail">E-mail cím</label>
+    <input id="guestEmail" type="text" name="guestEmail" />
+    <br />
+    <label for="guestPassword">Jelszó</label>
+    <input id="guestPassword" type="text" name="guestPassword" />
+    <br />
+    <label for="guestPasswordAgain">Jelszó mégegyszer</label>
+    <input id="guestPasswordAgain" type="text" name="guestPasswordAgain" />
+    <br />
+    <button type="submit">Küld</button>
+</form>
+</body>
+</html>

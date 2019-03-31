@@ -10,13 +10,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Apartman {
     Logger LOG = LoggerFactory.getLogger(Apartman.class);
-
+    String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
     private final GuestRepository guestRepository;
@@ -40,10 +43,12 @@ public class Apartman {
                                         String document,
                                         String email) {
         List<RoomEntity> freeRooms = getFreeRooms(startDate, endDate, numberOfBeds);
+
         if(freeRooms.size() == 0) {
             LOG.info("No free rooms");
             return false;
         }
+        freeRooms.sort(Comparator.comparing(RoomEntity::getNumberOfBeds));  //rendezi ágyszám szerint
         RoomEntity reservedRoom = freeRooms.get(0);
         GuestEntity guest = guestRepository.findGuest(name, address, document, email);
         ReservationEntity reservationEntity = new ReservationEntity(UUID.randomUUID().toString(),
@@ -58,12 +63,14 @@ public class Apartman {
         return true;
     }
 
-    public synchronized List<RoomEntity> getFreeRooms(LocalDate startDate, LocalDate endDate, int numberOfBeds) {
+    synchronized List<RoomEntity> getFreeRooms(LocalDate startDate, LocalDate endDate, int numberOfBeds) {
         List<RoomEntity> freeRooms = new ArrayList<>(roomRepository.rooms());
         LocalDate currentDate = startDate;
         while(!currentDate.isAfter(endDate)) {
             List<RoomEntity> reservedRooms = reservedRooms(currentDate);
             freeRooms.removeAll(reservedRooms);
+            freeRooms.removeAll(roomRepository.tooSmall(numberOfBeds)); //itt veszi le a kisebb ágyszámú szobákat
+
             currentDate = currentDate.plus(1, ChronoUnit.DAYS);
         }
         return freeRooms;
@@ -77,6 +84,8 @@ public class Apartman {
                 .map(roomRepository::getRoom)
                 .collect(Collectors.toList());
     }
+
+
 
     public List<Reservation> reservations() {
         return reservationRepository.reservations()
@@ -117,5 +126,14 @@ public class Apartman {
         }
     }
 
-    
+    public void newGuest (String name, String address, String email, String document, String password) {
+        guestRepository.create(name,address,document,email,false,password);
+    }
+
+    public Boolean isEmailValid(String email) {
+
+        Pattern pattern=Pattern.compile(EMAIL_REGEX,Pattern.CASE_INSENSITIVE);
+        Matcher matcher=pattern.matcher(email);
+        return matcher.matches();
+    }
 }
