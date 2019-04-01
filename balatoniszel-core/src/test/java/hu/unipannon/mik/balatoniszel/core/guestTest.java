@@ -40,7 +40,7 @@ public class guestTest {
         a.newGuest("Zoli","zoli@zoli.hu","1111 Sé Bő u. 1","123456ab","123456", "123456");
         //Then
         List<Guest> guests=a.guests();
-        GuestEntity g1=a.getGuest("zoli@zoli.hu","123456");
+        Guest g1=a.getGuest("zoli@zoli.hu","123456");
       Assertions.assertEquals(g1.getEmail(),"zoli@zoli.hu");
 
 
