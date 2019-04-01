@@ -26,4 +26,25 @@ public class guestTest {
         Assertions.assertEquals(guests.size(),1);
 
     }
+
+    @Test
+    public void userLoginTest () {
+        //Given
+        RoomRepository roomRepository=new RoomRepository();
+        ReservationRepository reservationRepository=new ReservationRepository();
+        GuestRepository guestRepository=new GuestRepository();
+        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository();
+        Apartman a=new Apartman(reservationRepository,roomRepository,guestRepository,specialDaysRepository);
+
+        //When
+        a.newGuest("Zoli","zoli@zoli.hu","1111 Sé Bő u. 1","123456ab","123456", "123456");
+        //Then
+        List<Guest> guests=a.guests();
+        GuestEntity g1=a.getGuest("zoli@zoli.hu","123456");
+      Assertions.assertEquals(g1.getEmail(),"zoli@zoli.hu");
+
+
+
+    }
+
 }

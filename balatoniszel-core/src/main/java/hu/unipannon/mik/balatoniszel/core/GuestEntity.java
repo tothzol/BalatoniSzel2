@@ -40,17 +40,17 @@ public class GuestEntity {
         return document;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email;}
 
     public boolean isRegular() { return regular; }
 
     public void setRegular (boolean regular) {this.regular=regular;}
 
+
+
     public boolean isValidPassword (String password) {
 //TODO: Implementation needed
-        return false;
+        return this.password==password;
     }
 
 

@@ -144,6 +144,10 @@ public class Apartman {
         return guestRepository.getGuest(guestID);
     }
 
+    public Guest getGuest(String email, String password) {
+        return guestRepository.getGuest(email,password).asGuest();
+    }
+
     public void setRegular(String guestID, boolean regular) {
         GuestEntity g = getGuest(guestID);
         g.setRegular(regular);
