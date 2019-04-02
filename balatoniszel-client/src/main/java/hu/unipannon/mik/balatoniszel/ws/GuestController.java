@@ -9,12 +9,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 @RestController
-public class guestController {
+public class GuestController {
 
     private final BalatoniSzel client;
 
     @Autowired
-    public guestController(BalatoniSzel client) {
+    public GuestController(BalatoniSzel client) {
         this.client = client;
     }
 
