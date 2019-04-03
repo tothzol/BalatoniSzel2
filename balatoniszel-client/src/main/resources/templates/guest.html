@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}">
+<head>
+    <title>Balatoni Szél Panzió - Vendég</title>
+
+</head>
+<body>
+<div id="page" layout:fragment="content">
+    <h1>Új vendég</h1>
+    <form action="/newGuest" method="post" enctype="multipart/form-data">
+        <label for="guestName">Név</label>
+        <input id="guestName" type="text" name="guestName" />
+        <br />
+        <label for="guestEmail">Email</label>
+        <input id="guestEmail" type="text" name="guestEmail"/>
+        <br />
+        <label for="guestAddress">Lakcím</label>
+        <input id="guestAddress" type="text" name="guestAddress" />
+        <br />
+        <label for="guestDocument">Személyazonosító okmány száma</label>
+        <input id="guestDocument" type="text" name="guestDocument">
+        <br />
+        <label for="guestPassword">Jelszó</label>
+        <input id="guestPassword" type="text" name="guestPassword" />
+        <br />
+        <label for="guestPasswordOneMore">Jelszó újra</label>
+        <input id="guestPasswordOneMore" type="text" name="guestPasswordOneMore" />
+        <br />
+        <button type="submit" class="btn btn-success">Küld</button>
+        <button type="reset" class="btn btn-secondary">Mégsem</button>
+    </form>
+
+    <h1>Vendégek</h1>
+    <div th:each="guest : ${guests}">
+        <form action="/setRegular" method="post" enctype="multipart/form-data">
+            Név: <span th:text="${guest.name}"></span> <br />
+            Cím: <span th:text="${guest.address}"></span> <br />
+            email: <span th:text="${guest.email}"></span> <br />
+            <input type="hidden" name="guestID" th:value="${guest.id}" />
+            <input type="radio" value="true" name="regular" th:checked="${guest.isRegular()}"> igen <br />
+            <input type="radio" value="false" name="regular" th:checked="${!guest.isRegular()}"> nem <br />
+            <button type="submit">Rögzít</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
