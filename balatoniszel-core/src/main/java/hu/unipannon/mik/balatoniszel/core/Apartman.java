@@ -76,15 +76,8 @@ public class Apartman {
     }
 
     private List<RoomEntity> reservedRooms(LocalDate currentDate) {
-        return reservationRepository.reservations()
-                .stream()
-                .filter(r -> !currentDate.isAfter(r.getEndDate()) && !currentDate.isBefore(r.getStartDate()))
-                .map(ReservationEntity::getRoomId)
-                .map(roomRepository::getRoom)
-                .collect(Collectors.toList());
+        return reservationRepository.freeRooms(currentDate, roomRepository);
     }
-
-
 
     public List<Reservation> reservations() {
         return reservationRepository.reservations()

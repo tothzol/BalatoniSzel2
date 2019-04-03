@@ -10,8 +10,8 @@ import java.time.LocalDate;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Reservation {
     private String id;
-    private String startDate;
-    private String endDate;
+    private String arrivalDate;
+    private String departureDate;
     private int numberOfBeds;
     private Guest guest;
     private Room room;
@@ -36,20 +36,20 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getArrivalDate() {
+        return arrivalDate;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setArrivalDate(String arrivalDate) {
+        this.arrivalDate = arrivalDate;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getDepartureDate() {
+        return departureDate;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
     }
 
     public int getNumberOfBeds() {

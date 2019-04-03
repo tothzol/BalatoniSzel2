@@ -7,14 +7,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ReservationEntity {
     
     private final String    id;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private final LocalDate arrivalDate;
+    private final LocalDate departureDate;
     private final int       numberOfBeds;
     private final String     guestId;
     private final String roomId;
@@ -22,15 +20,15 @@ public class ReservationEntity {
     private final LocalDateTime reservationDate;
 
     public ReservationEntity(String id,
-                             LocalDate startDate,
-                             LocalDate endDate,
+                             LocalDate arrivalDate,
+                             LocalDate departureDate,
                              int numberOfBeds,
                              String guestId,
                              String roomId,
                              LocalDateTime reservationDate) {
         this.id = id;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.arrivalDate = arrivalDate;
+        this.departureDate = departureDate;
         this.numberOfBeds = numberOfBeds;
         this.guestId = guestId;
         this.roomId = roomId;
@@ -46,12 +44,12 @@ public class ReservationEntity {
         return id;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getArrivalDate() {
+        return arrivalDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public LocalDate getDepartureDate() {
+        return departureDate;
     }
 
     public int getNumberOfBeds() {
@@ -71,8 +69,8 @@ public class ReservationEntity {
                                      SpecialDaysRepository specialDaysRepository) {
         Reservation result = new Reservation();
         result.setId(id);
-        result.setStartDate(startDate.format(DateTimeFormatter.ISO_DATE));
-        result.setEndDate(endDate.format(DateTimeFormatter.ISO_DATE));
+        result.setArrivalDate(arrivalDate.format(DateTimeFormatter.ISO_DATE));
+        result.setDepartureDate(departureDate.format(DateTimeFormatter.ISO_DATE));
         result.setNumberOfBeds(numberOfBeds);
         result.setGuest(guestRepository.getGuest(guestId).asGuest());
         result.setRoom(roomRepository.getRoom(roomId).asRoom());
@@ -94,8 +92,8 @@ public class ReservationEntity {
 
     private int calculatePrice(SpecialDaysRepository specialDaysRepository) {
         int price = 0;
-        LocalDate currentDate = startDate;
-        while(!currentDate.isAfter(endDate)) {
+        LocalDate currentDate = arrivalDate;
+        while(currentDate.isBefore(departureDate)) {
             price += getPriceForDay(currentDate, specialDaysRepository);
             currentDate = currentDate.plus(1, ChronoUnit.DAYS);
         }
@@ -111,6 +109,6 @@ public class ReservationEntity {
     }
 
     public boolean hasEnoughDeposit(SpecialDaysRepository specialDaysRepository) {
-        return deposit > getPriceForDay(startDate, specialDaysRepository);
+        return deposit > getPriceForDay(arrivalDate, specialDaysRepository);
     }
 }
