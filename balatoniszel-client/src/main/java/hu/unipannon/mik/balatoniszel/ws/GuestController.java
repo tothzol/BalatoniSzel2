@@ -20,9 +20,11 @@ public class GuestController {
 
     @GetMapping(path = "/guest")
     public ModelAndView guest() {
-        ModelAndView      guestView       = new ModelAndView("guest");
+        ModelAndView      guestView = new ModelAndView("guest");
+        guestView.addObject("guests", client.guests());
         return guestView;
     }
+
     @PostMapping(path="/newGuest")
     public ModelAndView newGuest(   @RequestParam(name = "guestName") String name,
                                     @RequestParam(name = "guestEmail") String email,
@@ -30,7 +32,14 @@ public class GuestController {
                                     @RequestParam(name = "guestDocument") String document,
                                     @RequestParam(name = "guestPassword") String password,
                                     @RequestParam(name = "guestPasswordOneMore") String passwordOneMore){
-            client.newGuest(name,email,address,document, password,passwordOneMore);
+        client.newGuest(name,email,address,document, password,passwordOneMore);
+        return new ModelAndView("redirect:/guest");
+    }
+
+    @PostMapping(path="/setRegular")
+    public ModelAndView newGuest(   @RequestParam(name = "guestId") String guestId,
+                                    @RequestParam(name = "regular") boolean regular){
+        client.setRegular(guestId, regular);
         return new ModelAndView("redirect:/guest");
     }
 }
