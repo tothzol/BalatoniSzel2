@@ -8,7 +8,7 @@ import java.util.List;
 @WebService
 public interface BalatoniSzel {
     @WebMethod
-    boolean reserve(String startDate, String endDate, int numberOfBeds, String name, String address, String document, String email);
+    boolean reserve(String arrivalDate, String departureDate, int numberOfBeds, String name, String address, String document, String email);
 
     @WebMethod
     List<Reservation> reservations();

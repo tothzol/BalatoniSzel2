@@ -35,14 +35,14 @@ public class ClientController {
     }
 
     @PostMapping(path="/reserve")
-    public ModelAndView reserve(@RequestParam(name = "startDate") String startDate,
-                                @RequestParam(name = "endDate") String endDate,
+    public ModelAndView reserve(@RequestParam(name = "arrivalDate") String arrivalDate,
+                                @RequestParam(name = "departureDate") String departureDate,
                                 @RequestParam(name = "numberOfBeds") int numberOfBeds,
                                 @RequestParam(name = "name") String name,
                                 @RequestParam(name = "address") String address,
                                 @RequestParam(name = "document") String document,
                                 @RequestParam(name = "email") String email) {
-        client.reserve(startDate, endDate, numberOfBeds, name, document, address, email);
+        client.reserve(arrivalDate, departureDate, numberOfBeds, name, document, address, email);
         return new ModelAndView("redirect:/");
     }
 

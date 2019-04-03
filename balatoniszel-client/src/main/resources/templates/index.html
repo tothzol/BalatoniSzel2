@@ -14,12 +14,12 @@
             <legend>Foglalás adatai</legend>
             <div class="form-row">
                 <div class="col-12 col-md-4 form-group">
-                    <label for="startDate">Foglalás kezdete</label>
-                    <input id="startDate" type="date" name="startDate" class="form-control" required/>
+                    <label for="arrivalDate">Érkezés</label>
+                    <input id="arrivalDate" type="date" name="arrivalDate" class="form-control" required/>
                 </div>
                 <div class="col-12 col-md-4 form-group">
-                    <label for="endDate">Foglalás vége</label>
-                    <input id="endDate" type="date" name="endDate" class="form-control" required/>
+                    <label for="departureDate">Távozás</label>
+                    <input id="departureDate" type="date" name="departureDate" class="form-control" required/>
                 </div>
                 <div class="col-12 col-md-4 form-group">
                     <label for="numberOfBeds">Személyek száma</label>
@@ -60,7 +60,7 @@
         <table class="table table-striped table-hover">
             <thead class="thead-dark">
             <tr>
-                <th>Dátum</th>
+                <th>Érkezés-távozás</th>
                 <th>Létszám</th>
                 <th>Név</th>
                 <th>Cím</th>
@@ -73,7 +73,7 @@
             </thead>
             <tbody>
             <tr th:each="reservation : ${reservations}">
-                <td th:text="${reservation.startDate} + ' - ' + ${reservation.endDate}"></td>
+                <td th:text="${reservation.arrivalDate} + ' - ' + ${reservation.departureDate}"></td>
                 <td th:text="${reservation.numberOfBeds}"></td>
                 <td th:text="${reservation.guest.name}"></td>
                 <td th:text="${reservation.guest.address}"></td>
