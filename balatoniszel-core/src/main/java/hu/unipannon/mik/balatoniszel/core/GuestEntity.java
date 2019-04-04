@@ -2,16 +2,37 @@ package hu.unipannon.mik.balatoniszel.core;
 
 import hu.unipannon.mik.balatoniszel.ws.Guest;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity(name = "guest")
 public class GuestEntity {
+    @Id
     private final String id;
+    @Column
     private final String name;
+    @Column
     private final String address;
+    @Column
     private final String document;
+    @Column
     private final String email;
+    @Column
     private Boolean regular;
+    @Column
     private final String password;
+
+    private GuestEntity() {
+        this.id = null;
+        this.name = null;
+        this.address = null;
+        this.document = null;
+        this.email = null;
+        this.regular = false;
+        this.password = null;
+    }
 
 
     public GuestEntity(String id, String name, String address, String document, String email, Boolean regular, String password) {
@@ -49,8 +70,7 @@ public class GuestEntity {
 
 
     public boolean isValidPassword (String password) {
-//TODO: Implementation needed
-        return this.password==password;
+        return Objects.equals(this.password, password);
     }
 
 

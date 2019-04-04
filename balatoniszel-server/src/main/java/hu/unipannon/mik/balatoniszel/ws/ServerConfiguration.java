@@ -4,7 +4,6 @@ import hu.unipannon.mik.balatoniszel.core.Apartman;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.apache.cxf.transport.servlet.CXFServlet;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

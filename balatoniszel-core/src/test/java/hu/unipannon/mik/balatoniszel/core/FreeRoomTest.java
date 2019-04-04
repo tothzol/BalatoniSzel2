@@ -1,19 +1,17 @@
 package hu.unipannon.mik.balatoniszel.core;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class FreeRoomTest {
-    @Test
     public void testAllRoomsAvaliable(){
         //Given
         RoomRepository roomRepository=new RoomRepository();
-        ReservationRepository reservationRepository=new ReservationRepository();
-        GuestRepository guestRepository=new GuestRepository();
-        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository();
+        ReservationRepository reservationRepository=new ReservationRepository(null);
+        GuestRepository guestRepository=new GuestRepository(null);
+        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository(null);
         Apartman a=new Apartman(reservationRepository,roomRepository,guestRepository,specialDaysRepository);
 
 
@@ -26,13 +24,12 @@ public class FreeRoomTest {
         Assertions.assertEquals(freeRooms.size(),roomRepository.rooms().size());
 
     }
-    @Test
     public void testRoom4Avaliable(){
         //Given
         RoomRepository roomRepository=new RoomRepository();
-        ReservationRepository reservationRepository=new ReservationRepository();
-        GuestRepository guestRepository=new GuestRepository();
-        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository();
+        ReservationRepository reservationRepository=new ReservationRepository(null);
+        GuestRepository guestRepository=new GuestRepository(null);
+        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository(null);
         Apartman a=new Apartman(reservationRepository,roomRepository,guestRepository,specialDaysRepository);
 
 
@@ -46,13 +43,12 @@ public class FreeRoomTest {
 
     }
 
-    @Test
     public void testRoom3Avaliable(){
         //Given
         RoomRepository roomRepository=new RoomRepository();
-        ReservationRepository reservationRepository=new ReservationRepository();
-        GuestRepository guestRepository=new GuestRepository();
-        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository();
+        ReservationRepository reservationRepository=new ReservationRepository(null);
+        GuestRepository guestRepository=new GuestRepository(null);
+        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository(null);
         Apartman a=new Apartman(reservationRepository,roomRepository,guestRepository,specialDaysRepository);
 
 

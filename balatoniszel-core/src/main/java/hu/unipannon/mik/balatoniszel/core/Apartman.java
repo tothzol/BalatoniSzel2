@@ -5,6 +5,8 @@ import hu.unipannon.mik.balatoniszel.ws.Reservation;
 import hu.unipannon.mik.balatoniszel.ws.SpecialDays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Component
 public class Apartman {
     Logger LOG = LoggerFactory.getLogger(Apartman.class);
 
@@ -24,6 +27,7 @@ public class Apartman {
     private final GuestRepository guestRepository;
     private final SpecialDaysRepository specialDaysRepository;
 
+    @Autowired
     public Apartman(ReservationRepository reservationRepository,
                     RoomRepository roomRepository,
                     GuestRepository guestRepository,
@@ -43,20 +47,20 @@ public class Apartman {
                                         String email) {
         List<RoomEntity> freeRooms = getFreeRooms(startDate, endDate, numberOfBeds);
 
-        if(freeRooms.size() == 0) {
+        if (freeRooms.size() == 0) {
             LOG.info("No free rooms");
             return false;
         }
         freeRooms.sort(Comparator.comparing(RoomEntity::getNumberOfBeds));  //rendezi ágyszám szerint
         RoomEntity reservedRoom = freeRooms.get(0);
-        GuestEntity guest = guestRepository.findGuest(name, address, document, email);
+        GuestEntity guest = guestRepository.findOrCreateGuest(name, address, document, email);
         ReservationEntity reservationEntity = new ReservationEntity(UUID.randomUUID().toString(),
-                                                                    startDate,
-                                                                    endDate,
-                                                                    numberOfBeds,
-                                                                    guest.getId(),
-                                                                    reservedRoom.getId(),
-                                                                    LocalDateTime.now());
+                startDate,
+                endDate,
+                numberOfBeds,
+                guest.getId(),
+                reservedRoom.getId(),
+                LocalDateTime.now());
         reservationRepository.addReservation(reservationEntity);
         LOG.info("Reservation saved.");
         return true;
@@ -65,7 +69,7 @@ public class Apartman {
     synchronized List<RoomEntity> getFreeRooms(LocalDate startDate, LocalDate endDate, int numberOfBeds) {
         List<RoomEntity> freeRooms = new ArrayList<>(roomRepository.rooms());
         LocalDate currentDate = startDate;
-        while(!currentDate.isAfter(endDate)) {
+        while (!currentDate.isAfter(endDate)) {
             List<RoomEntity> reservedRooms = reservedRooms(currentDate);
             freeRooms.removeAll(reservedRooms);
             freeRooms.removeAll(roomRepository.tooSmall(numberOfBeds)); //itt veszi le a kisebb ágyszámú szobákat
@@ -76,7 +80,7 @@ public class Apartman {
     }
 
     private List<RoomEntity> reservedRooms(LocalDate currentDate) {
-        return reservationRepository.freeRooms(currentDate, roomRepository);
+        return reservationRepository.reservedRooms(currentDate, roomRepository);
     }
 
     public List<Reservation> reservations() {
@@ -85,7 +89,6 @@ public class Apartman {
                 .map(r -> r.asReservation(guestRepository, roomRepository, specialDaysRepository))
                 .collect(Collectors.toList());
     }
-
 
 
     public ReservationEntity getReservation(String reservationId) {
@@ -112,25 +115,24 @@ public class Apartman {
     }
 
     public void setDeposit(String reservationId, int deposit) {
-        ReservationEntity reservation =  reservationRepository.getReservation(reservationId);
-        if(reservation != null) {
+        ReservationEntity reservation = reservationRepository.getReservation(reservationId);
+        if (reservation != null) {
             reservation.setDeposit(deposit);
             reservationRepository.saveReservation(reservation);
         }
     }
-    public List<Guest> guests(){
+
+    public List<Guest> guests() {
         return guestRepository.guests()
                 .stream()
-                .map(g->g.asGuest())
+                .map(g -> g.asGuest())
                 .collect(Collectors.toList());
     }
 
-    public void newGuest(String name,String email, String address, String document, String password, String passwordOneMore) {
-     if (password.equals(passwordOneMore)) {
-
-         guestRepository.addNewGuest(name, address, document, email, false, password);
-     }
-
+    public void newGuest(String name, String email, String address, String document, String password, String passwordOneMore) {
+        if (password.equals(passwordOneMore)) {
+            guestRepository.addNewGuest(name, address, document, email, false, password);
+        }
     }
 
     public GuestEntity getGuest(String guestID) {
@@ -138,7 +140,7 @@ public class Apartman {
     }
 
     public Guest getGuest(String email, String password) {
-        return guestRepository.getGuest(email,password).asGuest();
+        return guestRepository.getGuest(email, password).asGuest();
     }
 
     public void setRegular(String guestID, boolean regular) {

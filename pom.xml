@@ -109,6 +109,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito-core.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

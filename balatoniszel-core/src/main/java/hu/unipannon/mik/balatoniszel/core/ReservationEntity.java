@@ -3,21 +3,42 @@ package hu.unipannon.mik.balatoniszel.core;
 
 import hu.unipannon.mik.balatoniszel.ws.Reservation;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
+@Entity(name = "reservation")
 public class ReservationEntity {
-    
+    @Id
     private final String    id;
+    @Column
     private final LocalDate arrivalDate;
+    @Column
     private final LocalDate departureDate;
+    @Column
     private final int       numberOfBeds;
+    @Column
     private final String     guestId;
+    @Column
     private final String roomId;
+    @Column
     private int deposit;
+    @Column
     private final LocalDateTime reservationDate;
+
+    private ReservationEntity() {
+        this.id = null;
+        this.arrivalDate = null;
+        this.departureDate = null;
+        this.numberOfBeds = 0;
+        this.guestId = null;
+        this.roomId = null;
+        this.reservationDate = null;
+    }
 
     public ReservationEntity(String id,
                              LocalDate arrivalDate,

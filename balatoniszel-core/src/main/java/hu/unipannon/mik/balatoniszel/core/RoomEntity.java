@@ -2,9 +2,15 @@ package hu.unipannon.mik.balatoniszel.core;
 
 import hu.unipannon.mik.balatoniszel.ws.Room;
 
+import javax.persistence.*;
+
+@Entity(name="room")
 public class RoomEntity {
+    @Id
     private final String id;
+    @Column
     private final int numberOfBeds;
+
     private final boolean extraBedAvailable;
 
     public RoomEntity(String id, int numberOfBeds, boolean extraBedAvailable) {
