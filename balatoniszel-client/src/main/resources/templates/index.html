@@ -69,6 +69,7 @@
                 <th>Ár</th>
                 <th>Létrehozás időpontja</th>
                 <th>Előleg</th>
+                <th>Lejárt?</th>
             </tr>
             </thead>
             <tbody>
@@ -93,6 +94,7 @@
                         <input type="hidden" name="reservationId" th:value="${reservation.id}"/>
                     </form>
                 </td>
+                <td th:text="${reservation.expired ? 'Lejárt':'Aktív' }"></td>
             </tr>
             </tbody>
         </table>

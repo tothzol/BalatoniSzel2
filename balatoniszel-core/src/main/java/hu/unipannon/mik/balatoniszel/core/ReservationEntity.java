@@ -2,12 +2,16 @@ package hu.unipannon.mik.balatoniszel.core;
 
 
 import hu.unipannon.mik.balatoniszel.ws.Reservation;
+import org.slf4j.Logger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
@@ -29,6 +33,8 @@ public class ReservationEntity {
     private int deposit;
     @Column
     private final LocalDateTime reservationDate;
+    @Column
+    private boolean expired;
 
     private ReservationEntity() {
         this.id = null;
@@ -38,6 +44,7 @@ public class ReservationEntity {
         this.guestId = null;
         this.roomId = null;
         this.reservationDate = null;
+        this.expired = false;
     }
 
     public ReservationEntity(String id,
@@ -55,6 +62,7 @@ public class ReservationEntity {
         this.roomId = roomId;
         this.deposit = 0;
         this.reservationDate = reservationDate;
+        this.expired = false;
     }
 
     public LocalDateTime getReservationDate() {
@@ -96,7 +104,7 @@ public class ReservationEntity {
         result.setGuest(guestRepository.getGuest(guestId).asGuest());
         result.setRoom(roomRepository.getRoom(roomId).asRoom());
         result.setDeposit(deposit);
-        result.setHasEnoughDeposit(hasEnoughDeposit(specialDaysRepository));
+        result.setExpired(expired);
         result.setPrice(calculatePrice(specialDaysRepository));
         String formattedReservationDate = reservationDate.format(DateTimeFormatter.ISO_DATE_TIME);
         result.setReservationDate(formattedReservationDate);
@@ -129,7 +137,30 @@ public class ReservationEntity {
         this.deposit = deposit;
     }
 
-    public boolean hasEnoughDeposit(SpecialDaysRepository specialDaysRepository) {
-        return deposit > getPriceForDay(arrivalDate, specialDaysRepository);
+    /**
+     * Checks, wether the reservation has enough deposit or not. The deposit has to cover at least the first day price.
+     * @param specialDaysRepository
+     * @return
+     */
+    private boolean hasEnoughDeposit(SpecialDaysRepository specialDaysRepository) {
+        return deposit >= getPriceForDay(arrivalDate, specialDaysRepository);
+    }
+
+    /**
+     * Updates the expiration, if the reservation does not have enough deposit,
+     * when the current date is 4 days before the arrival date, the reservation is expired.
+     * This will be called:
+     * - upon each Administrator login (TODO)
+     * - on each day, 5 minutes after midnight from a scheduled task
+     * @param specialDaysRepository
+     * @param currentDate
+     */
+    public boolean updateExpiration(SpecialDaysRepository specialDaysRepository, LocalDate currentDate) {
+        boolean shallUpdateExpiration = Period.between(currentDate, arrivalDate).get(ChronoUnit.DAYS) == 4; // end is exclusive
+        boolean doesNotHaveEnoughDeposit = !hasEnoughDeposit(specialDaysRepository);
+        if(shallUpdateExpiration && doesNotHaveEnoughDeposit) {
+            this.expired = true;
+        }
+        return this.expired;
     }
 }

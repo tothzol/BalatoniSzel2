@@ -16,7 +16,7 @@ public class Reservation {
     private Guest guest;
     private Room room;
     private int deposit;
-    private boolean hasEnoughDeposit;
+    private boolean expired;
     private int price;
     private String reservationDate;
 
@@ -84,12 +84,12 @@ public class Reservation {
         this.deposit = deposit;
     }
 
-    public boolean isHasEnoughDeposit() {
-        return hasEnoughDeposit;
+    public boolean isExpired() {
+        return expired;
     }
 
-    public void setHasEnoughDeposit(boolean hasEnoughDeposit) {
-        this.hasEnoughDeposit = hasEnoughDeposit;
+    public void setExpired(boolean expired) {
+        this.expired = expired;
     }
 
     public int getPrice() {

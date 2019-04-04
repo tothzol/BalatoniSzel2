@@ -38,6 +38,14 @@ public class ReservationRepository {
         return entityManager.createQuery(allReservationsQuery).getResultList();
     }
 
+    public List<ReservationEntity> notExpiredReservations() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<ReservationEntity> notExpiredReservationsQuery = cb.createQuery(ReservationEntity.class);
+        Root<ReservationEntity> root = notExpiredReservationsQuery.from(ReservationEntity.class);
+        notExpiredReservationsQuery.where(cb.isFalse(root.get("expired")));
+        return entityManager.createQuery(notExpiredReservationsQuery).getResultList();
+    }
+
     public List<RoomEntity> reservedRooms(LocalDate date, RoomRepository roomRepository) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<ReservationEntity> reservationsOnDayQuery = cb.createQuery(ReservationEntity.class);
