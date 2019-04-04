@@ -2,20 +2,17 @@ package hu.unipannon.mik.balatoniszel.core;
 
 import hu.unipannon.mik.balatoniszel.ws.Guest;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.util.List;
 
-public class guestTest {
+public class GuestTest {
 
-    @Test
     public void oneUserAddTest () {
         //Given
         RoomRepository roomRepository=new RoomRepository();
-        ReservationRepository reservationRepository=new ReservationRepository();
-        GuestRepository guestRepository=new GuestRepository();
-        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository();
+        ReservationRepository reservationRepository=new ReservationRepository(null);
+        GuestRepository guestRepository=new GuestRepository(null);
+        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository(null);
         Apartman a=new Apartman(reservationRepository,roomRepository,guestRepository,specialDaysRepository);
 
         //When
@@ -27,13 +24,12 @@ public class guestTest {
 
     }
 
-    @Test
     public void userLoginTest () {
         //Given
         RoomRepository roomRepository=new RoomRepository();
-        ReservationRepository reservationRepository=new ReservationRepository();
-        GuestRepository guestRepository=new GuestRepository();
-        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository();
+        ReservationRepository reservationRepository=new ReservationRepository(null);
+        GuestRepository guestRepository=new GuestRepository(null);
+        SpecialDaysRepository specialDaysRepository=new SpecialDaysRepository(null);
         Apartman a=new Apartman(reservationRepository,roomRepository,guestRepository,specialDaysRepository);
 
         //When

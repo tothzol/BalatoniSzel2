@@ -2,13 +2,26 @@ package hu.unipannon.mik.balatoniszel.core;
 
 import hu.unipannon.mik.balatoniszel.ws.SpecialDays;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Entity(name = "specialday")
 public class SpecialDaysEntity {
+    @Id
     private final String id;
+    @Column
     private final LocalDate startDate;
+    @Column
     private final LocalDate endDate;
+
+    private SpecialDaysEntity() {
+        this.id = null;
+        this.startDate = null;
+        this.endDate = null;
+    }
 
     public SpecialDaysEntity(String id, LocalDate startDate, LocalDate endDate) {
         this.id = id;

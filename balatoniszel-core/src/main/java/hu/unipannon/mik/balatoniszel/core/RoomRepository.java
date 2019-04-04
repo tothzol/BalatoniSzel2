@@ -1,9 +1,13 @@
 package hu.unipannon.mik.balatoniszel.core;
 
+import org.springframework.stereotype.Component;
+
+import javax.persistence.EntityManager;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class RoomRepository {
 
     private List<RoomEntity> rooms = List.of(new RoomEntity("201", 2, false),
