@@ -12,7 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
-            <artifactId>balatoniszel-api</artifactId>
+            <artifactId>balatoniszel-api-admin</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

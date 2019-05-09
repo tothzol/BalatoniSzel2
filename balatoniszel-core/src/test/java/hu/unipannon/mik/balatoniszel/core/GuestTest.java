@@ -1,6 +1,6 @@
 package hu.unipannon.mik.balatoniszel.core;
 
-import hu.unipannon.mik.balatoniszel.ws.Guest;
+import hu.unipannon.mik.balatoniszel.server.Guest;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.List;

@@ -1,14 +1,11 @@
 package hu.unipannon.mik.balatoniszel.core;
 
 
-import hu.unipannon.mik.balatoniszel.ws.Reservation;
-import org.slf4j.Logger;
+import hu.unipannon.mik.balatoniszel.server.Reservation;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;

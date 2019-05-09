@@ -1,14 +1,13 @@
 package hu.unipannon.mik.balatoniszel.core;
 
-import hu.unipannon.mik.balatoniszel.ws.Guest;
-import hu.unipannon.mik.balatoniszel.ws.Reservation;
-import hu.unipannon.mik.balatoniszel.ws.SpecialDays;
+import hu.unipannon.mik.balatoniszel.server.Guest;
+import hu.unipannon.mik.balatoniszel.server.Reservation;
+import hu.unipannon.mik.balatoniszel.server.SpecialDays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

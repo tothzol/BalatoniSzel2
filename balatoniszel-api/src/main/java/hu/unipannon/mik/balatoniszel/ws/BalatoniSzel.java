@@ -1,4 +1,4 @@
-package hu.unipannon.mik.balatoniszel.ws;
+package hu.unipannon.mik.balatoniszel.server;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -13,17 +13,7 @@ public interface BalatoniSzel {
     @WebMethod
     List<Reservation> reservations();
 
-    @WebMethod
-    void setDeposit(String reservationId, int deposit);
 
-    @WebMethod
-    void setSpecialDays(String startDate, String endDate);
-
-    @WebMethod
-    List<SpecialDays> getSpecialDays();
-
-    @WebMethod
-    void deleteSpecialDays(String id);
 
     @WebMethod
     void newGuest(String name,String email, String address, String document, String password, String passwordOneMore);

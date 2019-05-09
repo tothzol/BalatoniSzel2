@@ -1,4 +1,4 @@
-package hu.unipannon.mik.balatoniszel.ws;
+package hu.unipannon.mik.balatoniszel.server;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.time.LocalDate;
 
 
-@XmlType(namespace = "hu.unipannon.mik.balatoniszel.ws")
+@XmlType(namespace = "hu.unipannon.mik.balatoniszel.server")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Reservation {
     private String id;

@@ -1,5 +1,6 @@
 package hu.unipannon.mik.balatoniszel.core;
 
+import hu.unipannon.mik.balatoniszel.server.LoginLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -75,14 +76,14 @@ public class GuestRepository {
 
 
     private GuestEntity create(String name, String address, String document, String email, Boolean regular) {
-        //TODO: password generálás
-        return addNewGuest(name, address, document, email, regular, "pass");
+        return addNewGuest(name, address, document, email, regular, email);
 
     }
 
     public GuestEntity addNewGuest(String name, String address, String document, String email, Boolean regular, String password) {
+
         //TODO: password generálás
-        GuestEntity guest = new GuestEntity(UUID.randomUUID().toString(), name, address, document, email,regular,password);
+        GuestEntity guest = new GuestEntity(UUID.randomUUID().toString(), name, address, document, email,regular, password, LoginLevel.GUEST);
         entityManager.persist(guest);
         return guest;
     }
@@ -90,4 +91,5 @@ public class GuestRepository {
     public void saveGuest(GuestEntity guest) {
         entityManager.merge(guest);
     }
+
 }
