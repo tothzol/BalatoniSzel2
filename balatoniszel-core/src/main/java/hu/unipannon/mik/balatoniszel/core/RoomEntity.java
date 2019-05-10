@@ -1,6 +1,6 @@
 package hu.unipannon.mik.balatoniszel.core;
 
-import hu.unipannon.mik.balatoniszel.server.Room;
+import hu.unipannon.mik.balatoniszel.client.Room;
 
 import javax.persistence.*;
 

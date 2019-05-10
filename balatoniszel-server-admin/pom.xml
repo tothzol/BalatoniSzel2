@@ -37,6 +37,11 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>balatoniszel-server-guest</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>net.sf.jopt-simple</groupId>
             <artifactId>jopt-simple</artifactId>
         </dependency>
@@ -85,19 +90,4 @@
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

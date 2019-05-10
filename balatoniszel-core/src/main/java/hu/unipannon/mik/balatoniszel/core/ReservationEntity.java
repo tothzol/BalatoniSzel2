@@ -1,7 +1,7 @@
 package hu.unipannon.mik.balatoniszel.core;
 
 
-import hu.unipannon.mik.balatoniszel.server.Reservation;
+import hu.unipannon.mik.balatoniszel.client.Reservation;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

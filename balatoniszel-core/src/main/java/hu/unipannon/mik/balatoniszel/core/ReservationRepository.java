@@ -72,4 +72,12 @@ public class ReservationRepository {
         entityManager.merge(reservation);
 
     }
+
+    public List<ReservationEntity> reservationsFor(GuestEntity guest) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<ReservationEntity> guestReservationsQuery = cb.createQuery(ReservationEntity.class);
+        Root<ReservationEntity> root = guestReservationsQuery.from(ReservationEntity.class);
+        guestReservationsQuery.where(cb.equal(root.get("guestId"), guest.getId()));
+        return entityManager.createQuery(guestReservationsQuery).getResultList();
+    }
 }

@@ -1,7 +1,7 @@
 package hu.unipannon.mik.balatoniszel.core;
 
-import hu.unipannon.mik.balatoniszel.server.Guest;
-import hu.unipannon.mik.balatoniszel.server.LoginLevel;
+import hu.unipannon.mik.balatoniszel.client.Guest;
+import hu.unipannon.mik.balatoniszel.client.LoginLevel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ public class GuestEntity {
     @Column
     private final String password;
     @Column
-    private final LoginLevel loginLevel;
+    private LoginLevel loginLevel;
 
     private GuestEntity() {
         this.id = null;
@@ -122,5 +122,9 @@ public class GuestEntity {
 
     public LoginLevel getLoginLevel() {
         return loginLevel;
+    }
+
+    public void setLoginLevel(LoginLevel level) {
+        this.loginLevel = level;
     }
 }

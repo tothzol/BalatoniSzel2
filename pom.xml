@@ -17,6 +17,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <module>balatoniszel-server-guest</module>
         <module>balatoniszel-api-admin</module>
         <module>balatoniszel-server-admin</module>
+        <module>balatoniszel-server-app-public</module>
+        <module>balatoniszel-server-app-guest</module>
+        <module>balatoniszel-server-app-admin</module>
     </modules>
     <name>Balatoni Szél Reservation App</name>
     <packaging>pom</packaging>

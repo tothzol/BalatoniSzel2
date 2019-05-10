@@ -1,8 +1,8 @@
 package hu.unipannon.mik.balatoniszel.core;
 
-import hu.unipannon.mik.balatoniszel.server.Guest;
-import hu.unipannon.mik.balatoniszel.server.Reservation;
-import hu.unipannon.mik.balatoniszel.server.SpecialDays;
+import hu.unipannon.mik.balatoniszel.client.Guest;
+import hu.unipannon.mik.balatoniszel.client.Reservation;
+import hu.unipannon.mik.balatoniszel.client.SpecialDays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,5 +146,12 @@ public class Apartman {
         GuestEntity g = getGuest(guestID);
         g.setRegular(regular);
         guestRepository.saveGuest(g);
+    }
+
+    public List<Reservation> reservationsFor(GuestEntity guest) {
+        return reservationRepository.reservationsFor(guest)
+                .stream()
+                .map(r -> r.asReservation(guestRepository, roomRepository, specialDaysRepository))
+                .collect(Collectors.toList());
     }
 }
