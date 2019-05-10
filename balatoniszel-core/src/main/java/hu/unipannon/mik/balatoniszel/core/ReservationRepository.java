@@ -51,8 +51,8 @@ public class ReservationRepository {
         CriteriaQuery<ReservationEntity> reservationsOnDayQuery = cb.createQuery(ReservationEntity.class);
         Root<ReservationEntity> root = reservationsOnDayQuery.from(ReservationEntity.class);
         reservationsOnDayQuery.where(
-                cb.or(
-                    cb.lessThan(root.get("arrivalDate"), date),
+                cb.and(
+                    cb.lessThanOrEqualTo(root.get("arrivalDate"), date),
                     cb.greaterThan(root.get("departureDate"), date)
                  )
         );
