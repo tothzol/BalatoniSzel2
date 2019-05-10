@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin_base}">
+<head>
+    <title>Foglalások</title>
+</head>
+<body>
+<div id="page" layout:fragment="content">
+    <div th:if="${not #lists.isEmpty(reservations)}">
+        <hr/>
+        <h1>Foglalások</h1>
+
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th>Érkezés-távozás</th>
+                <th>Létszám</th>
+                <th>Név</th>
+                <th>Cím</th>
+                <th>Okmány</th>
+                <th>Email</th>
+                <th>Ár</th>
+                <th>Létrehozás időpontja</th>
+                <th>Előleg</th>
+                <th>Lejárt?</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reservation : ${reservations}">
+                <td th:text="${reservation.arrivalDate} + ' - ' + ${reservation.departureDate}"></td>
+                <td th:text="${reservation.numberOfBeds}"></td>
+                <td th:text="${reservation.guest.name}"></td>
+                <td th:text="${reservation.guest.address}"></td>
+                <td th:text="${reservation.guest.document}"></td>
+                <td th:text="${reservation.guest.email}"></td>
+                <td th:text="${reservation.price}"></td>
+                <td th:text="${reservation.reservationDate}"></td>
+                <td>
+                    <form action="/admin/reservations/setDeposit" method="post" enctype="multipart/form-data">
+                        <div class="input-group input-group-sm">
+                            <input type="number" class="form-control" name="deposit" min="0"
+                                   th:value="${reservation.deposit}">
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="submit">Rögzít</button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="reservationId" th:value="${reservation.id}"/>
+                    </form>
+                </td>
+                <td th:text="${reservation.expired ? 'Lejárt':'Aktív' }"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

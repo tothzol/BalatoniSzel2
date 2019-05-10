@@ -1,6 +1,6 @@
 package hu.unipannon.mik.balatoniszel.core;
 
-import hu.unipannon.mik.balatoniszel.ws.SpecialDays;
+import hu.unipannon.mik.balatoniszel.client.SpecialDays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/public_base}">
+<head>
+    <title>Foglalás</title>
+</head>
+<body>
+<div id="page" layout:fragment="content">
+    <h1>Regisztráció</h1>
+    <form action="/register" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="col-12 col-md-6 form-group">
+                <label for="guestName">Név</label>
+                <input id="guestName" type="text" name="guestName" class="form-control" required>
+            </div>
+            <div class="col-12 col-md-6 form-group">
+                <label for="guestEmail">E-mail cím</label>
+                <input id="guestEmail" type="email" name="guestEmail" class="form-control" required/>
+            </div>
+            <div class="col-12 col-md-6 form-group">
+                <label for="guestDocument">Személyazonosító okmány száma</label>
+                <input id="guestDocument" type="text" name="guestDocument" class="form-control" required/>
+            </div>
+            <div class="col-12 form-group">
+                <label for="guestAddress">Lakcím</label>
+                <input id="guestAddress" type="text" name="guestAddress" class="form-control" required/>
+            </div>
+            <div class="col-12 form-group">
+                <label for="guestPassword">Jelszó</label>
+                <input id="guestPassword" type="password" name="guestPassword" class="form-control" required/>
+            </div>
+            <div class="col-12 form-group">
+                <label for="guestPasswordOneMore">Jelszó még egyszer</label>
+                <input id="guestPasswordOneMore" type="password" name="guestPasswordOneMore" class="form-control" required/>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Regisztrál</button>
+        <button type="reset" class="btn btn-secondary">Mégsem</button>
+    </form>
+</div>
+</body>
+</html>
