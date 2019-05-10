@@ -23,21 +23,9 @@ public class AdminClientController extends BaseController {
     public ModelAndView adminIndex(HttpSession session) {
         BalatoniSzelAdmin client = getAdminClient(session);
         if (client != null) {
-            ModelAndView adminIndex =  new ModelAndView("admin_index");
+            ModelAndView adminIndex =  new ModelAndView("admin_reservations");
             adminIndex.addObject("reservations", client.reservations(getToken(session)));
             return adminIndex;
-        } else {
-            return UNAUTH_VIEW;
-        }
-    }
-
-    @GetMapping(path = "/admin/reservations")
-    public ModelAndView reservations(HttpSession session) {
-        BalatoniSzelAdmin client = getAdminClient(session);
-        if(client != null) {
-            ModelAndView reservationsView = new ModelAndView("admin_reservations");
-            reservationsView.addObject("reservations", client.reservations(getToken(session)));
-            return reservationsView;
         } else {
             return UNAUTH_VIEW;
         }

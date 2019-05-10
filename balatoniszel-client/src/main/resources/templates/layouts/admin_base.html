@@ -22,7 +22,7 @@
                     <a class="nav-link" href="/">Főoldal</a>
                 </li>
                 <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/admin/reservations'} ? 'active' : ''">
-                    <a class="nav-link" href="/admin/reservations">Foglalások kezelések</a>
+                    <a class="nav-link" href="/admin">Foglalások kezelések</a>
                 </li>
                 <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/admin/specialDays'} ? 'active' : ''">
                     <a class="nav-link" href="/admin/specialDays">Kiemelt napok szerkesztése</a>
